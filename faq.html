@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0F172A" />
+  <meta name="description" content="Comonline FAQ" />
+  <link rel="icon" href="assets/img/favicon.svg" />
+  <title>FAQ — Comonline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="theme-dark">
+  <header class="site-header" id="top">
+    <nav class="container mx-auto flex items-center justify-between px-6 py-4 md:px-8" aria-label="Main navigation">
+      <a href="index.html" class="brand flex items-center gap-4"><img src="assets/img/logo.png" alt="Comonline logo" class="logo-image" /></a>
+      <button class="menu-toggle md:hidden" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">Menu</button>
+      <div class="hidden items-center gap-6 md:flex">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="authors.html" class="nav-link">Authors</a>
+        <a href="books.html" class="nav-link">Books</a>
+        <a href="what-we-write.html" class="nav-link">What We Write</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </nav>
+    <div class="mobile-menu hidden px-6 pb-6 md:hidden" id="mobileMenu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="authors.html" class="mobile-link">Authors</a>
+      <a href="books.html" class="mobile-link">Books</a>
+      <a href="what-we-write.html" class="mobile-link">What We Write</a>
+      <a href="faq.html" class="mobile-link">FAQ</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
+  </header>
+  <main class="container mx-auto px-6 py-16">
+    <section class="section-shell reveal">
+      <p class="eyebrow">FAQ</p>
+      <h1 class="section-title">Common questions about working with Comonline.</h1>
+      <p class="section-copy">Read how our process unfolds, what projects we accept, and how to begin a collaboration with clarity and confidence.</p>
+    </section>
+
+    <section class="section-shell px-0 py-12">
+      <div class="faq-item reveal">
+        <summary>What kind of writing does Comonline support?</summary>
+        <p>Memoirs, narrative nonfiction, essays, books, brand storytelling, and editorial collaborations for ambitious authors and professionals.</p>
+      </div>
+      <div class="faq-item reveal">
+        <summary>How do I start a project?</summary>
+        <p>Send a brief description through our contact page, and we will arrange a discovery call to review your goals and schedule.</p>
+      </div>
+      <div class="faq-item reveal">
+        <summary>Can I work with Comonline remotely?</summary>
+        <p>Yes. We support global clients with virtual editorial sessions, online workshops, and digital project management.</p>
+      </div>
+      <div class="faq-item reveal">
+        <summary>Do you provide publishing or launch support?</summary>
+        <p>Yes. We help authors with positioning, proposal development, launch strategy, and audience engagement.</p>
+      </div>
+    </section>
+
+    <section class="section-shell px-0 py-12 reveal">
+      <div class="contact-panel">
+        <h3>Still have questions?</h3>
+        <p>Contact us for a personalized response and a thoughtful discussion about your project.</p>
+        <a href="contact.html" class="btn btn-primary">Ask a question</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer-shell px-6 py-12 md:px-8">
+    <div class="container mx-auto flex flex-col gap-8 border-t border-white/10 pt-8 md:flex-row md:justify-between">
+      <div>
+        <a href="index.html" class="brand flex items-center gap-4">
+          <img src="assets/img/logo.png" alt="Comonline logo" class="logo-image" />
+        </a>
+        <p class="muted mt-3">Luxury literary strategy, editorial care, and publishing support for ambitious storytellers.</p>
+      </div>
+      <div class="flex flex-col gap-2 text-sm text-[#f8f6f2]/80">
+        <a href="index.html">Home</a>
+        <a href="authors.html">Authors</a>
+        <a href="books.html">Books</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

@@ -4,197 +4,452 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#050505" />
+  <meta name="theme-color" content="#0F172A" />
+  <meta name="description" content="Comonline is a premium literary brand for authors, storytellers, publishers, and creative professionals seeking exceptional writing support." />
   <link rel="icon" href="assets/img/favicon.svg" />
-  <title>Inkforge Press — Comonline.com</title>
-  <meta name="description" content="Inkforge Press — Professional book publishing and author services at Comonline.com." />
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Comonline — Premium Literary Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="theme-dark">
+  <div class="page-glow" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <nav class="nav container" role="navigation" aria-label="Main Navigation">
-      <div class="brand">
-        <a href="#" class="logo">Inkforge Press<span class="domain"> • Comonline.com</span></a>
+
+  <header class="site-header" id="top">
+    <nav class="container mx-auto flex items-center justify-between px-6 py-4 md:px-8" role="navigation" aria-label="Main navigation">
+      <a href="#top" class="brand flex items-center gap-4">
+        <img src="assets/img/logo.png" alt="Comonline logo" class="logo-image" />
+      </a>
+
+      <button class="menu-toggle md:hidden" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">Menu</button>
+
+      <div class="hidden items-center gap-6 md:flex">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="authors.html" class="nav-link">Authors</a>
+        <a href="books.html" class="nav-link">Books</a>
+        <a href="what-we-write.html" class="nav-link">What We Write</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="btn btn-ghost" id="searchToggle" aria-expanded="false" aria-controls="search">Search</button>
-        <button class="btn btn-ghost" id="themeToggle" aria-pressed="true">Light</button>
-        <button class="btn btn-primary">Work With Us</button>
+
+      <div class="hidden items-center gap-3 md:flex">
+        <button class="pill-btn" id="searchToggle" aria-controls="search" aria-expanded="false">Search</button>
+        <button class="pill-btn" id="themeToggle" aria-pressed="true">Light</button>
+        <a href="contact.html" class="btn btn-primary">Join Comonline</a>
       </div>
     </nav>
+
+    <div class="mobile-menu hidden px-6 pb-6 md:hidden" id="mobileMenu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="authors.html" class="mobile-link">Authors</a>
+      <a href="books.html" class="mobile-link">Books</a>
+      <a href="what-we-write.html" class="mobile-link">What We Write</a>
+      <a href="faq.html" class="mobile-link">FAQ</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
   </header>
 
   <main id="main" role="main">
-    <section id="home" class="hero">
-      <div class="hero-inner container">
-        <div class="hero-copy">
-          <h1 class="eyebrow">From manuscript to published author</h1>
-          <h2 class="hero-title">Inkforge Press — Professional publishing support for authors</h2>
-          <p class="hero-lead">Inkforge Press helps authors transform manuscripts into polished books with professional editing, formatting, design, publishing, and promotion support.</p>
-          <div class="hero-ctas">
-            <a href="#contact" class="btn btn-secondary">Start Your Publishing Journey</a>
-            <a href="#services" class="btn btn-outline">Explore Services</a>
+    <section id="home" class="relative overflow-hidden px-6 py-20 md:px-8 md:py-28">
+      <div class="container mx-auto grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="max-w-3xl reveal">
+          <p class="eyebrow">Comonline • premium literary studio</p>
+          <h1 class="hero-title">Where extraordinary stories begin.</h1>
+          <p class="hero-copy">Comonline is a refined creative home for authors, storytellers, editors, publishers, and readers seeking a world-class literary experience shaped with care, craft, and distinction.</p>
+          <div class="hero-actions">
+            <a href="books.html" class="btn btn-primary">Explore Comonline</a>
+            <a href="authors.html" class="btn btn-outline">Join the Community</a>
           </div>
-          <div class="trust">
-            <span><strong>500</strong> Books supported · <strong>98%</strong> Author satisfaction · <strong>15</strong> Years of experience</span>
+          <div class="hero-stats" aria-label="Comonline highlights">
+            <div><strong class="count" data-target="180">0</strong><span>Authors</span></div>
+            <div><strong class="count" data-target="92">0</strong><span>Published books</span></div>
+            <div><strong class="count" data-target="24">0</strong><span>Workshops</span></div>
+            <div><strong class="count" data-target="41">0</strong><span>Countries</span></div>
           </div>
         </div>
 
-        <div class="hero-media">
-          <div class="product-showcase" id="showcase">
-            <button class="nav prev" aria-label="Previous">‹</button>
-            <div class="slides">
-              <figure class="slide active"><img src="assets/img/product-1.svg" alt="Book cover 1" loading="lazy"></figure>
-              <figure class="slide"><img src="assets/img/product-2.svg" alt="Book cover 2" loading="lazy"></figure>
-              <figure class="slide"><img src="assets/img/product-3.svg" alt="Book cover 3" loading="lazy"></figure>
+        <div class="reveal">
+          <div class="hero-card">
+            <div class="hero-card__head">
+              <span class="hero-pill">Featured release</span>
+              <span class="hero-pill muted">Spring 2026</span>
             </div>
-            <button class="nav next" aria-label="Next">›</button>
+            <svg viewBox="0 0 420 500" class="hero-illustration" role="img" aria-label="Editorial book illustration">
+              <rect x="72" y="60" width="276" height="380" rx="24" fill="#111827" />
+              <rect x="100" y="88" width="220" height="324" rx="18" fill="url(#g1)" />
+              <rect x="126" y="120" width="136" height="18" rx="9" fill="#F8F6F2" opacity="0.86" />
+              <rect x="126" y="154" width="100" height="12" rx="6" fill="#C8A96A" opacity="0.8" />
+              <rect x="126" y="188" width="168" height="10" rx="5" fill="#F8F6F2" opacity="0.7" />
+              <rect x="126" y="214" width="152" height="10" rx="5" fill="#F8F6F2" opacity="0.6" />
+              <circle cx="300" cy="340" r="52" fill="#C8A96A" opacity="0.9" />
+              <path d="M330 336c-2-44-45-74-84-70" stroke="#F8F6F2" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.8" />
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#0F172A" />
+                  <stop offset="100%" stop-color="#334155" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="hero-card__footer">
+              <div>
+                <p class="label">New manuscript workshop</p>
+                <h3>Crafting the modern literary voice</h3>
+              </div>
+              <a href="#events" class="text-link">View schedule</a>
+            </div>
           </div>
-          <div class="scroll-hint">Scroll</div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about container reveal">
-      <div class="about-grid">
-        <div class="about-text">
-          <h3>About Inkforge Press</h3>
-          <p>Professional publishing support for authors at every stage. We help writers bring their manuscripts to life through expert editing, elegant design, thoughtful publishing, and targeted promotional strategy.</p>
-          <ul class="values">
-            <li>Clarity</li>
-            <li>Quality</li>
-            <li>Credibility</li>
-          </ul>
+    <section id="about" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="reveal">
+          <p class="eyebrow">About Comonline</p>
+          <h2 class="section-title">A studio for imagination, craft, and enduring stories.</h2>
+          <p class="section-copy">Comonline brings together editorial rigor, modern publishing strategy, and timeless aesthetics. We shape narratives that feel both intimate and unforgettable, whether they begin as a manuscript, a personal memoir, or a bold new brand voice.</p>
+          <div class="chip-row">
+            <span class="chip">Mission</span>
+            <span class="chip">Vision</span>
+            <span class="chip">Values</span>
+            <span class="chip">Philosophy</span>
+          </div>
         </div>
-        <div class="about-visual">
-          <div class="frame"> <img src="assets/img/product-1.svg" alt="Artwork" loading="lazy"/> </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="services" class="services container reveal">
-      <h3 class="section-title">Everything your book needs to succeed</h3>
-      <div class="cards">
-        <article class="card">
-          <h4>Editing</h4>
-          <p>Refine your manuscript with professional editing that preserves your voice while strengthening clarity and flow.</p>
-          <a class="learn" href="#">Learn more</a>
-        </article>
-        <article class="card">
-          <h4>Formatting</h4>
-          <p>Prepare your book for print and digital platforms with clean, professional formatting.</p>
-          <a class="learn" href="#">Learn more</a>
-        </article>
-        <article class="card">
-          <h4>Publishing</h4>
-          <p>Take your book from manuscript to marketplace with seamless publishing support and distribution.</p>
-          <a class="learn" href="#">Learn more</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="portfolio" class="portfolio container reveal">
-      <h3 class="section-title">Published Works</h3>
-      <div class="masonry">
-        <a class="m-item" href="#">
-          <img src="assets/img/product-2.svg" alt="The Last Lantern" loading="lazy">
-          <div class="m-overlay"><h4>The Last Lantern</h4><span>Fiction — Beautifully published literary work</span></div>
-        </a>
-        <a class="m-item" href="#">
-          <img src="assets/img/product-3.svg" alt="Blueprint for Growth" loading="lazy">
-          <div class="m-overlay"><h4>Blueprint for Growth</h4><span>Non-Fiction — Professional and market-ready</span></div>
-        </a>
-        <a class="m-item" href="#">
-          <img src="assets/img/product-1.svg" alt="Pieces of a Life" loading="lazy">
-          <div class="m-overlay"><h4>Pieces of a Life</h4><span>Memoir — Emotionally resonant and polished</span></div>
-        </a>
-      </div>
-    </section>
-
-    <!-- Search overlay -->
-    <div id="search" class="search-overlay" hidden aria-hidden="true">
-      <div class="search-inner container">
-        <button id="searchClose" class="btn btn-ghost">Close</button>
-        <input id="searchInput" type="search" placeholder="Search the Atelier archive" aria-label="Search">
-      </div>
-    </div>
-
-    <section id="process" class="process container reveal">
-      <h3 class="section-title">Why choose us</h3>
-      <ol class="process-list">
-        <li>Author-first approach</li>
-        <li>Professional polish</li>
-        <li>End-to-end support</li>
-      </ol>
-    </section>
-
-    <section id="stats" class="stats container reveal">
-      <div class="stat"><strong class="count" data-target="500">0</strong><span>Books supported</span></div>
-      <div class="stat"><strong class="count" data-target="98">0</strong><span>Author satisfaction</span></div>
-      <div class="stat"><strong class="count" data-target="15">0</strong><span>Years experience</span></div>
-    </section>
-
-    <section id="contact" class="contact container reveal">
-      <h3 class="section-title">Ready to publish your book?</h3>
-      <div class="contact-grid">
-        <form class="contact-form" action="#">
-          <label>Name<input type="text" name="name" required></label>
-          <label>Email<input type="email" name="email" required></label>
-          <label>Project details<textarea name="message" required></textarea></label>
-          <button class="btn btn-primary">Start the Conversation</button>
-        </form>
-        <div class="contact-info">
-          <h4>Inkforge Press</h4>
-          <p>Comonline.com</p>
-          <p>Email: hello@comonline.com</p>
-          <p>Hours: Mon–Fri 9:00–18:00</p>
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <span>01</span>
+            <div>
+              <h3>Curate</h3>
+              <p>We identify the core of every story and sharpen its emotional clarity.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span>02</span>
+            <div>
+              <h3>Shape</h3>
+              <p>Our editors and designers turn raw ideas into elegant, market-ready experiences.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <span>03</span>
+            <div>
+              <h3>Launch</h3>
+              <p>We guide each project into the world with strategic publishing, community, and momentum.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="newsletter" class="newsletter container reveal">
-      <h3>Join the Inkforge Newsletter</h3>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Email address" aria-label="Email address">
-        <button class="btn btn-ghost">Subscribe</button>
-      </form>
+    <section id="authors" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Featured authors</p>
+          <h2 class="section-title">A community of remarkable voices.</h2>
+        </div>
+        <div class="card-grid mt-8">
+          <article class="feature-card reveal">
+            <div class="avatar avatar-1"></div>
+            <h3>Mina Solace</h3>
+            <p>Literary fiction • Award-winning novelist</p>
+            <ul>
+              <li>Three acclaimed novels</li>
+              <li>National book award finalist</li>
+              <li>Public speaker</li>
+            </ul>
+          </article>
+          <article class="feature-card reveal">
+            <div class="avatar avatar-2"></div>
+            <h3>Julian Hart</h3>
+            <p>Memoir • Narrative nonfiction</p>
+            <ul>
+              <li>Best-selling memoir</li>
+              <li>Global readers club</li>
+              <li>Workshop mentor</li>
+            </ul>
+          </article>
+          <article class="feature-card reveal">
+            <div class="avatar avatar-3"></div>
+            <h3>Rae Vale</h3>
+            <p>Poetry • Essay collection</p>
+            <ul>
+              <li>International poetry prize</li>
+              <li>Editorial collaborator</li>
+              <li>Community curator</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
 
+    <section id="books" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Books showcase</p>
+          <h2 class="section-title">Selected titles shaped for lasting impact.</h2>
+        </div>
+        <div class="filter-row reveal" role="tablist" aria-label="Book categories">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="fiction">Fiction</button>
+          <button class="filter-btn" data-filter="memoir">Memoir</button>
+          <button class="filter-btn" data-filter="nonfiction">Nonfiction</button>
+        </div>
+        <div class="card-grid mt-8">
+          <article class="book-card reveal" data-category="fiction">
+            <div class="book-cover cover-1"></div>
+            <div class="book-meta">
+              <h3>The Silk Archive</h3>
+              <p>New release • 4.9/5</p>
+            </div>
+          </article>
+          <article class="book-card reveal" data-category="memoir">
+            <div class="book-cover cover-2"></div>
+            <div class="book-meta">
+              <h3>Under the Lantern</h3>
+              <p>Coming soon • 5.0/5</p>
+            </div>
+          </article>
+          <article class="book-card reveal" data-category="nonfiction">
+            <div class="book-cover cover-3"></div>
+            <div class="book-meta">
+              <h3>Quiet Authority</h3>
+              <p>Editors’ pick • 4.8/5</p>
+            </div>
+          </article>
+          <article class="book-card reveal" data-category="memoir">
+            <div class="book-cover cover-4"></div>
+            <div class="book-meta">
+              <h3>Living with Bipolar</h3>
+              <p>P.J. Ray • Memoir • 4.7/5</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Literary services</p>
+          <h2 class="section-title">Support for every chapter of the journey.</h2>
+        </div>
+        <div class="card-grid mt-8">
+          <article class="service-card reveal">
+            <h3>Ghostwriting</h3>
+            <p>Shape your story with a disciplined narrative voice and polished structure.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Editing</h3>
+            <p>Refine rhythm, clarity, and depth without losing the authenticity of your voice.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Publishing Guidance</h3>
+            <p>Navigate the industry with insight, positioning, and bespoke strategy.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Brand Building</h3>
+            <p>Develop a distinctive identity that carries from manuscript to public presence.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="academy" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Writing academy</p>
+          <h2 class="section-title">Learning experiences built for ambitious craft.</h2>
+        </div>
+        <div class="card-grid mt-8">
+          <article class="academy-card reveal">
+            <h3>Masterclasses</h3>
+            <p>Deep-dive sessions with editors, agents, and bestselling authors.</p>
+          </article>
+          <article class="academy-card reveal">
+            <h3>Writing Challenges</h3>
+            <p>Structured prompts that sharpen discipline and storytelling confidence.</p>
+          </article>
+          <article class="academy-card reveal">
+            <h3>Templates</h3>
+            <p>Elegant planning resources for outlines, pitches, and book proposals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+        <div class="reveal">
+          <p class="eyebrow">Community</p>
+          <h2 class="section-title">A living circle of writers, readers, and creative professionals.</h2>
+          <p class="section-copy">Join intimate salons, live sessions, writing circles, and book club gatherings designed to sustain momentum and belonging.</p>
+        </div>
+        <div class="community-panel reveal">
+          <div class="community-stat"><strong>4.8k</strong><span>Members</span></div>
+          <div class="community-stat"><strong>120+</strong><span>Live sessions</span></div>
+          <div class="community-stat"><strong>18</strong><span>Book clubs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stories" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Success stories</p>
+          <h2 class="section-title">The journeys behind the books.</h2>
+        </div>
+        <div class="testimonial-shell reveal">
+          <button class="testimonial-nav" id="testimonialPrev" aria-label="Previous testimonial">←</button>
+          <div class="testimonial-track">
+            <article class="testimonial-card active">
+              <p>“Comonline helped transform our manuscript into a polished experience that felt truly premium from first page to launch.”</p>
+              <strong>Elena Brooks</strong>
+              <span>Author, The Glass Orchard</span>
+            </article>
+            <article class="testimonial-card">
+              <p>“The guidance, design, and strategic support were exceptional. It felt like a beautifully curated studio.”</p>
+              <strong>Owen Reed</strong>
+              <span>Memoirist & speaker</span>
+            </article>
+          </div>
+          <button class="testimonial-nav" id="testimonialNext" aria-label="Next testimonial">→</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="journal" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Blog & journal</p>
+          <h2 class="section-title">Editorial notes for thoughtful readers.</h2>
+        </div>
+        <div class="card-grid mt-8">
+          <article class="journal-card reveal">
+            <h3>On the craft of the opening chapter</h3>
+            <p>How elegant beginnings set the tone for larger emotional arcs.</p>
+          </article>
+          <article class="journal-card reveal">
+            <h3>Publishing without losing your voice</h3>
+            <p>Why strong editorial collaboration should feel like partnership, not erasure.</p>
+          </article>
+          <article class="journal-card reveal">
+            <h3>Designing a book for the modern reader</h3>
+            <p>From cover language to digital experience, discover the details that matter.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="reveal">
+          <p class="eyebrow">Events</p>
+          <h2 class="section-title">Book launches, retreats, and intimate learning gatherings.</h2>
+          <p class="section-copy">Reserve a place at our next symposium and join a carefully curated experience of insight, conversation, and inspiration.</p>
+        </div>
+        <div class="event-card reveal">
+          <h3>Next gathering</h3>
+          <p class="event-date" id="countdown">Loading...</p>
+          <p>Comonline Salon • London • September 14</p>
+          <a href="#newsletter" class="text-link">Reserve your place</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto">
+        <div class="newsletter-card reveal">
+          <div>
+            <p class="eyebrow">Newsletter</p>
+            <h2 class="section-title">Receive the latest reflections, releases, and invitations.</h2>
+          </div>
+          <form class="newsletter-form" aria-label="Newsletter signup">
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" type="email" placeholder="Email address" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-shell px-6 py-16 md:px-8">
+      <div class="container mx-auto grid gap-8 lg:grid-cols-[1fr_0.95fr]">
+        <div class="reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Begin a conversation that feels as thoughtful as the work itself.</h2>
+          <form class="contact-form" aria-label="Contact form">
+            <label>
+              Name
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Project
+              <textarea name="project" rows="4" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Start your project</button>
+          </form>
+        </div>
+
+        <div class="reveal">
+          <div class="contact-panel">
+            <h3>Visit the studio</h3>
+            <p>hello@comonline.com</p>
+            <p>+44 20 5555 0142</p>
+            <p>16 Mercer Lane, London</p>
+            <details class="faq-item">
+              <summary>What kinds of projects do you support?</summary>
+              <p>We support novels, memoirs, nonfiction, poetry collections, brand storytelling, and editorial development.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Do you work internationally?</summary>
+              <p>Yes. Our collaborations span authors, publishers, and creative professionals across the world.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="col">
-        <a class="logo">Inkforge Press</a>
-        <p class="muted">Comonline.com — All rights reserved.</p>
+  <footer class="footer-shell px-6 py-12 md:px-8">
+    <div class="container mx-auto flex flex-col gap-8 border-t border-white/10 pt-8 md:flex-row md:justify-between">
+      <div>
+        <a href="index.html" class="brand flex items-center gap-4">
+          <img src="assets/img/logo.png" alt="Comonline logo" class="logo-image" />
+        </a>
+        <p class="muted mt-3">Luxury literary strategy, editorial care, and publishing support for ambitious storytellers.</p>
       </div>
-      <div class="col">
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col">
-        <h5>Services</h5>
-        <ul>
-          <li>Branding</li>
-          <li>Editorial</li>
-          <li>Digital</li>
-        </ul>
+      <div class="flex flex-col gap-2 text-sm text-[#f8f6f2]/80">
+        <a href="index.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href="authors.html">Authors</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <div id="search" class="search-overlay" hidden aria-hidden="true">
+    <div class="search-panel">
+      <button id="searchClose" class="pill-btn">Close</button>
+      <input id="searchInput" type="search" placeholder="Search Comonline resources" aria-label="Search Comonline" />
+      <div class="search-suggestions">
+        <span>Ghostwriting</span>
+        <span>Writing Academy</span>
+        <span>Book launches</span>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/app.js" defer></script>
 </body>
