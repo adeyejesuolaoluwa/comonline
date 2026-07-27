@@ -233,6 +233,11 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 .cover-2 { background: linear-gradient(140deg, #1f2937, #7c2d12 60%, #f8f6f2); }
 .cover-3 { background: linear-gradient(140deg, #111827, #4b5563 60%, #d1d5db); }
 .cover-4 { background: linear-gradient(140deg, #0b1121, #234d69 50%, #5d86b1); }
+.cover-5 { background: linear-gradient(140deg, #2a2540, #5b2d7e 55%, #c8a96a); }
+.cover-6 { background: linear-gradient(140deg, #3b1f2b, #9b2f50 55%, #f8e7e9); }
+.cover-7 { background: linear-gradient(140deg, #2b3a4a, #6b4a90 55%, #ffd6f0); }
+.cover-8 { background: linear-gradient(140deg, #10202a, #2b5a6a 55%, #9fb7c9); }
+.cover-9 { background: linear-gradient(140deg, #2b1010, #5a2430 55%, #f4d1c4); }
 .book-card.is-hidden { display: none; }
 
 .community-panel { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
