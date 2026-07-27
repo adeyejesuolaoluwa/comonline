@@ -99,6 +99,13 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
   max-width: 200px;
   height: auto;
 }
+.brand-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
 .brand-subtitle { display: inline-block; margin-left: 0.35rem; color: var(--muted); font-size: 0.7rem; letter-spacing: .18em; text-transform: uppercase; }
 .nav-link, .mobile-link { color: var(--muted); transition: color .2s ease; }
 .nav-link:hover, .mobile-link:hover { color: var(--text); }
