@@ -1,448 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Atelier is a premium digital studio crafting luxury, cinematic web experiences for modern brands." />
-    <meta name="theme-color" content="#050505" />
-    <title>Atelier — Luxury Digital Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" href="#home" aria-label="Atelier home">
-          <span class="brand-mark">A</span>
-          <span class="brand-text">
-            <strong>Atelier</strong>
-            <small>Comonline.com</small>
-          </span>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="assets/img/favicon.svg" />
+  <title>Atelier — Comonline.com</title>
+  <meta name="description" content="Atelier — Luxury author website for Comonline.com. Premium, cinematic, handcrafted." />
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" role="navigation" aria-label="Main Navigation">
+      <div class="brand">
+        <a href="#" class="logo">Atelier<span class="domain"> • Comonline.com</span></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="searchToggle" aria-expanded="false" aria-controls="search">Search</button>
+        <button class="btn btn-ghost" id="themeToggle" aria-pressed="true">Light</button>
+        <button class="btn btn-primary">Work With Us</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" role="main">
+    <section id="home" class="hero">
+      <div class="hero-inner container">
+        <div class="hero-copy">
+          <h1 class="eyebrow">A New Chapter in Craft</h1>
+          <h2 class="hero-title">Atelier — Stories that feel handcrafted</h2>
+          <p class="hero-lead">Bespoke author experiences, books, and editorial storytelling designed with meticulous taste and quiet power.</p>
+          <div class="hero-ctas">
+            <a href="#portfolio" class="btn btn-secondary">Explore Works</a>
+            <a href="#contact" class="btn btn-outline">Request a Consultation</a>
+          </div>
+          <div class="trust">
+            <span>Featured on Comonline.com</span>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="product-showcase" id="showcase">
+            <button class="nav prev" aria-label="Previous">‹</button>
+            <div class="slides">
+              <figure class="slide active"><img src="assets/img/product-1.svg" alt="Book cover 1" loading="lazy"></figure>
+              <figure class="slide"><img src="assets/img/product-2.svg" alt="Book cover 2" loading="lazy"></figure>
+              <figure class="slide"><img src="assets/img/product-3.svg" alt="Book cover 3" loading="lazy"></figure>
+            </div>
+            <button class="nav next" aria-label="Next">›</button>
+          </div>
+          <div class="scroll-hint">Scroll</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container reveal">
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>About Atelier</h3>
+          <p>Atelier crafts immersive author experiences — from book launches and editorial design to immersive online galleries. We believe in restraint, craft, and lasting design.</p>
+          <ul class="values">
+            <li>Craftsmanship</li>
+            <li>Editorial clarity</li>
+            <li>Strategic storytelling</li>
+          </ul>
+        </div>
+        <div class="about-visual">
+          <div class="frame"> <img src="assets/img/product-1.svg" alt="Artwork" loading="lazy"/> </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services container reveal">
+      <h3 class="section-title">Services</h3>
+      <div class="cards">
+        <article class="card">
+          <h4>Author Branding</h4>
+          <p>Identity systems, covers, and brand worlds that endure.</p>
+          <a class="learn" href="#">Learn more</a>
+        </article>
+        <article class="card">
+          <h4>Book Design</h4>
+          <p>Editorial layouts, typography, and print-ready files with tactile intent.</p>
+          <a class="learn" href="#">Learn more</a>
+        </article>
+        <article class="card">
+          <h4>Digital Experiences</h4>
+          <p>Web presentation, galleries, and launch microsites that feel cinematic.</p>
+          <a class="learn" href="#">Learn more</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio" class="portfolio container reveal">
+      <h3 class="section-title">Portfolio</h3>
+      <div class="masonry">
+        <a class="m-item" href="#">
+          <img src="assets/img/product-2.svg" alt="Project 1" loading="lazy">
+          <div class="m-overlay"><h4>Project Title</h4><span>Case Study</span></div>
         </a>
+        <a class="m-item" href="#">
+          <img src="assets/img/product-3.svg" alt="Project 2" loading="lazy">
+          <div class="m-overlay"><h4>Project Title</h4><span>Gallery</span></div>
+        </a>
+        <a class="m-item" href="#">
+          <img src="assets/img/product-1.svg" alt="Project 3" loading="lazy">
+          <div class="m-overlay"><h4>Project Title</h4><span>Featured</span></div>
+        </a>
+      </div>
+    </section>
 
-        <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#process">Process</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="nav-actions">
-          <button class="icon-btn" aria-label="Search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 0 8.5 8.5" /></svg>
-          </button>
-          <button class="theme-toggle" type="button" aria-label="Toggle theme">☾</button>
-          <a class="btn btn-accent btn-magnetic" href="#contact">Book a Call</a>
-        </div>
-      </header>
-
-      <main id="home">
-        <section class="hero section">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Luxury digital craftsmanship</p>
-            <h1>We shape modern brands into unforgettable digital experiences.</h1>
-            <p class="hero-text">
-              Atelier blends cinematic storytelling, premium UI, and strategic engineering to create websites worthy of the most discerning audiences.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-accent btn-magnetic" href="#portfolio">View Portfolio</a>
-              <a class="btn btn-secondary" href="#about">Discover Atelier</a>
-            </div>
-            <div class="hero-trust">
-              <span>Trusted by founders, cultural brands, and modern operators</span>
-              <div class="trust-badges">
-                <span>Premium UX</span>
-                <span>Fast Launch</span>
-                <span>Global Reach</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-visual reveal">
-            <div class="hero-card">
-              <div class="hero-card-glow"></div>
-              <div class="hero-card-grid">
-                <figure class="product-card featured-product">
-                  <div class="image-placeholder" aria-hidden="true"></div>
-                </figure>
-                <figure class="product-card small-product">
-                  <div class="image-placeholder" aria-hidden="true"></div>
-                </figure>
-                <figure class="product-card small-product alt">
-                  <div class="image-placeholder" aria-hidden="true"></div>
-                </figure>
-              </div>
-            </div>
-            <div class="scroll-indicator">
-              <span>Scroll</span>
-              <span class="line"></span>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" class="section about-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">About Atelier</p>
-            <h2>An agency that turns ambition into a premium digital presence.</h2>
-          </div>
-          <div class="about-grid">
-            <div class="about-story reveal">
-              <p>
-                Atelier is a multidisciplinary studio shaping sophisticated web experiences with editorial clarity, cinematic motion, and relentless attention to detail.
-              </p>
-              <p>
-                Our work merges strategic thinking and tactile design into refined interfaces that feel effortless, memorable, and unmistakably premium.
-              </p>
-            </div>
-            <div class="about-panels reveal">
-              <article>
-                <h3>Mission</h3>
-                <p>Craft seamless digital identities for brands that demand excellence.</p>
-              </article>
-              <article>
-                <h3>Vision</h3>
-                <p>Elevate modern commerce through striking, human-centered design.</p>
-              </article>
-              <article>
-                <h3>Values</h3>
-                <p>Precision, clarity, elegance, and a deep respect for craft.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="services" class="section services-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Services</p>
-            <h2>Luxury services designed for ambitious brands.</h2>
-          </div>
-          <div class="services-grid">
-            <article class="service-card reveal">
-              <div class="service-icon">01</div>
-              <h3>Brand Systems</h3>
-              <p>Identity, typography, and refined digital language that feels unmistakably premium.</p>
-              <a href="#contact">Learn more</a>
-            </article>
-            <article class="service-card reveal">
-              <div class="service-icon">02</div>
-              <h3>Experience Design</h3>
-              <p>Immersive, elegant interfaces with motion, clarity, and lasting impact.</p>
-              <a href="#contact">Learn more</a>
-            </article>
-            <article class="service-card reveal">
-              <div class="service-icon">03</div>
-              <h3>Frontend Development</h3>
-              <p>High-performance builds crafted for speed, responsiveness, and polish.</p>
-              <a href="#contact">Learn more</a>
-            </article>
-            <article class="service-card reveal">
-              <div class="service-icon">04</div>
-              <h3>Launch Strategy</h3>
-              <p>Launches that feel cinematic and convert with confidence across every touchpoint.</p>
-              <a href="#contact">Learn more</a>
-            </article>
-          </div>
-        </section>
-
-        <section id="portfolio" class="section portfolio-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Portfolio</p>
-            <h2>Selected work shaped with editorial rigor and modern luxury.</h2>
-          </div>
-          <div class="portfolio-filters reveal">
-            <button class="filter-chip active">All</button>
-            <button class="filter-chip">Branding</button>
-            <button class="filter-chip">Editorial</button>
-            <button class="filter-chip">Experience</button>
-          </div>
-          <div class="portfolio-grid">
-            <article class="portfolio-card reveal tall">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="card-overlay">
-                <span>Case Study</span>
-                <h3>Monarch Residence</h3>
-              </div>
-            </article>
-            <article class="portfolio-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="card-overlay">
-                <span>Gallery</span>
-                <h3>Galerie Noir</h3>
-              </div>
-            </article>
-            <article class="portfolio-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="card-overlay">
-                <span>Experience</span>
-                <h3>Obsidian Studio</h3>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="process" class="section process-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Creative Process</p>
-            <h2>A disciplined path from idea to launch.</h2>
-          </div>
-          <div class="process-list">
-            <div class="process-step reveal">
-              <span>01</span>
-              <h3>Discover</h3>
-              <p>We unpack strategy, voice, and ambitions to create a strong foundation.</p>
-            </div>
-            <div class="process-step reveal">
-              <span>02</span>
-              <h3>Research</h3>
-              <p>We study audience behavior, market context, and the emotional cues that matter.</p>
-            </div>
-            <div class="process-step reveal">
-              <span>03</span>
-              <h3>Design</h3>
-              <p>We translate the narrative into elegant layouts, fluid interactions, and thoughtful systems.</p>
-            </div>
-            <div class="process-step reveal">
-              <span>04</span>
-              <h3>Develop</h3>
-              <p>We build responsive, performant experiences with speed and quality in mind.</p>
-            </div>
-            <div class="process-step reveal">
-              <span>05</span>
-              <h3>Refine</h3>
-              <p>We calibrate motion, content, and every detail until the experience feels effortless.</p>
-            </div>
-            <div class="process-step reveal">
-              <span>06</span>
-              <h3>Deliver</h3>
-              <p>We launch refined experiences that feel elevated, memorable, and future-ready.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section featured-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Featured Projects</p>
-            <h2>Concepts built with sculptural detail and clarity.</h2>
-          </div>
-          <div class="featured-grid">
-            <article class="featured-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="featured-content">
-                <h3>Studio Aurelia</h3>
-                <p>Editorial storytelling paired with rich motion and a luxurious, understated palette.</p>
-                <ul>
-                  <li>Framer</li>
-                  <li>Motion Systems</li>
-                  <li>Conversion Focus</li>
-                </ul>
-                <a class="btn btn-secondary" href="#contact">Preview</a>
-              </div>
-            </article>
-            <article class="featured-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="featured-content">
-                <h3>North House</h3>
-                <p>A premium launch experience designed to embody warmth, precision, and modern confidence.</p>
-                <ul>
-                  <li>Brand Narrative</li>
-                  <li>Webflow</li>
-                  <li>High Conversion</li>
-                </ul>
-                <a class="btn btn-secondary" href="#contact">Preview</a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section stats-section">
-          <div class="stats-grid">
-            <div class="stat-card reveal">
-              <strong data-count="120">0</strong>
-              <span>Projects completed</span>
-            </div>
-            <div class="stat-card reveal">
-              <strong data-count="84">0</strong>
-              <span>Happy clients</span>
-            </div>
-            <div class="stat-card reveal">
-              <strong data-count="26">0</strong>
-              <span>Awards earned</span>
-            </div>
-            <div class="stat-card reveal">
-              <strong data-count="18">0</strong>
-              <span>Countries served</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="section testimonials-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Testimonials</p>
-            <h2>Clients remember the experience as much as the result.</h2>
-          </div>
-          <div class="testimonial-carousel reveal">
-            <article class="testimonial active">
-              <p>“Atelier gave our launch the kind of clarity and polish that instantly elevated our reputation.”</p>
-              <div>
-                <strong>Mina Hart</strong>
-                <span>Founder, Lumen Collective</span>
-              </div>
-            </article>
-            <article class="testimonial">
-              <p>“The detail, pacing, and craftsmanship feel truly world-class.”</p>
-              <div>
-                <strong>Adrian Vale</strong>
-                <span>Creative Director, North House</span>
-              </div>
-            </article>
-            <article class="testimonial">
-              <p>“Every interaction feels considered. It feels like a luxury brand in motion.”</p>
-              <div>
-                <strong>Sophia Rena</strong>
-                <span>Head of Growth, Aurelia Studio</span>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="blog" class="section blog-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">From the Journal</p>
-            <h2>Editorial notes on design, strategy, and modern storytelling.</h2>
-          </div>
-          <div class="blog-grid">
-            <article class="blog-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="blog-content">
-                <span>Design • 6 min read</span>
-                <h3>Designing for premium trust in a crowded market.</h3>
-              </div>
-            </article>
-            <article class="blog-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="blog-content">
-                <span>Strategy • 4 min read</span>
-                <h3>Why narrative clarity matters more than trend chasing.</h3>
-              </div>
-            </article>
-            <article class="blog-card reveal">
-              <div class="image-placeholder" aria-hidden="true"></div>
-              <div class="blog-content">
-                <span>Development • 5 min read</span>
-                <h3>Building high-end interactions without sacrificing speed.</h3>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section faq-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">FAQ</p>
-            <h2>Questions that often come up before a launch.</h2>
-          </div>
-          <div class="faq-list">
-            <details class="faq-item reveal" open>
-              <summary>What types of brands do you work with?</summary>
-              <p>We partner with founders, cultural teams, and premium brands that value depth, precision, and elevated presence.</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary>How do you approach a new project?</summary>
-              <p>We start with discovery, research, and a clear strategic direction before crafting the visual and technical experience.</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary>Can you support launch and ongoing iteration?</summary>
-              <p>Yes. We design for launch and remain available for refinement, growth, and new campaign moments.</p>
-            </details>
-          </div>
-        </section>
-
-        <section id="contact" class="section contact-section">
-          <div class="contact-block reveal">
-            <div class="contact-copy">
-              <p class="eyebrow">Contact</p>
-              <h2>Let’s build something rare and memorable together.</h2>
-              <p>Atelier is available for select collaborations. Reach out for strategy, design, and premium launch support.</p>
-              <ul>
-                <li>Email: <a href="mailto:hello@comonline.com?subject=Hello%20Atelier">hello@comonline.com</a></li>
-                <li>Phone: +1 (415) 555-0148</li>
-                <li>Address: 88 Mercer Street, New York, NY</li>
-                <li>Hours: Mon–Fri • 9:00–18:00</li>
-              </ul>
-            </div>
-            <form class="contact-form">
-              <label>
-                Name
-                <input type="text" placeholder="Your name" />
-              </label>
-              <label>
-                Email
-                <input type="email" placeholder="Your email" />
-              </label>
-              <label>
-                Project brief
-                <textarea rows="4" placeholder="Tell us about your vision"></textarea>
-              </label>
-              <button class="btn btn-accent" type="submit">Send Inquiry</button>
-            </form>
-          </div>
-        </section>
-
-        <section class="section newsletter-section">
-          <div class="newsletter-card reveal">
-            <div>
-              <p class="eyebrow">Newsletter</p>
-              <h2>Receive thoughtful design notes and launch inspiration.</h2>
-            </div>
-            <form class="newsletter-form">
-              <input type="email" placeholder="Email address" />
-              <button class="btn btn-accent" type="submit">Subscribe</button>
-            </form>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div>
-          <a class="brand" href="#home">
-            <span class="brand-mark">A</span>
-            <span class="brand-text">
-              <strong>Atelier</strong>
-              <small>Comonline.com</small>
-            </span>
-          </a>
-          <p>Premium digital experiences for modern brands.</p>
-        </div>
-        <div>
-          <h3>Quick Links</h3>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#portfolio">Portfolio</a>
-        </div>
-        <div>
-          <h3>Contact</h3>
-          <a href="mailto:hello@comonline.com?subject=Hello%20Atelier">hello@comonline.com</a>
-          <a href="#contact">Book a consultation</a>
-        </div>
-        <div>
-          <h3>Follow</h3>
-          <a href="#">Instagram</a>
-          <a href="#">Behance</a>
-          <a href="#">LinkedIn</a>
-        </div>
-      </footer>
+    <!-- Search overlay -->
+    <div id="search" class="search-overlay" hidden aria-hidden="true">
+      <div class="search-inner container">
+        <button id="searchClose" class="btn btn-ghost">Close</button>
+        <input id="searchInput" type="search" placeholder="Search the Atelier archive" aria-label="Search">
+      </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <section id="process" class="process container reveal">
+      <h3 class="section-title">Process</h3>
+      <ol class="process-list">
+        <li>Discover →</li>
+        <li>Research →</li>
+        <li>Design →</li>
+        <li>Develop →</li>
+        <li>Refine →</li>
+        <li>Deliver</li>
+      </ol>
+    </section>
+
+    <section id="stats" class="stats container reveal">
+      <div class="stat"><strong class="count" data-target="128">0</strong><span>Projects</span></div>
+      <div class="stat"><strong class="count" data-target="64">0</strong><span>Clients</span></div>
+      <div class="stat"><strong class="count" data-target="12">0</strong><span>Awards</span></div>
+    </section>
+
+    <section id="contact" class="contact container reveal">
+      <h3 class="section-title">Contact</h3>
+      <div class="contact-grid">
+        <form class="contact-form" action="#">
+          <label>Name<input type="text" required></label>
+          <label>Email<input type="email" required></label>
+          <label>Message<textarea required></textarea></label>
+          <button class="btn btn-primary">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <h4>Visit</h4>
+          <p>Comonline.com</p>
+          <p>Email: hello@comonline.com</p>
+          <p>Hours: Mon–Fri 9:00–18:00</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="newsletter container reveal">
+      <h3>Join the Atelier Newsletter</h3>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Email address" aria-label="Email address">
+        <button class="btn btn-ghost">Subscribe</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="col">
+        <a class="logo">Atelier</a>
+        <p class="muted">Comonline.com — All rights reserved.</p>
+      </div>
+      <div class="col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Services</h5>
+        <ul>
+          <li>Branding</li>
+          <li>Editorial</li>
+          <li>Digital</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
 </html>
