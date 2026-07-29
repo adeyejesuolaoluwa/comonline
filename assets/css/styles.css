@@ -238,6 +238,7 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 .cover-7 { background: linear-gradient(140deg, #2b3a4a, #6b4a90 55%, #ffd6f0); }
 .cover-8 { background: linear-gradient(140deg, #10202a, #2b5a6a 55%, #9fb7c9); }
 .cover-9 { background: linear-gradient(140deg, #2b1010, #5a2430 55%, #f4d1c4); }
+.cover-10 { background-image: url("assets/img/1002982551.jpg"); background-size: cover; background-position: center; }
 .book-card.is-hidden { display: none; }
 
 .community-panel { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
