@@ -241,11 +241,6 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 .cover-2 { background: linear-gradient(140deg, #1f2937, #7c2d12 60%, #f8f6f2); }
 .cover-3 { background: linear-gradient(140deg, #111827, #4b5563 60%, #d1d5db); }
 .cover-4 { background-image: url("../img/Living-with-bipolar.jpg"); background-size: cover; background-position: center; }
-.cover-5 { background-image: url("../img/Threshing-day.jpg"); background-size: cover; background-position: center; }
-.cover-6 { background-image: url("../img/A-court-of-thorns-7.jpg"); background-size: cover; background-position: center; }
-.cover-7 { background-image: url("../img/Vine-of-hearts.jpg"); background-size: cover; background-position: center; }
-.cover-8 { background-image: url("../img/Under-the-iron-sky.jpg"); background-size: cover; background-position: center; }
-.cover-9 { background-image: url("../img/Exquisite-torment-of-loving-your-enemy.jpg"); background-size: cover; background-position: center; }
 .cover-10 { background: linear-gradient(140deg, #1f2937, #334155 55%, #8b94a6); }
 .book-card.is-hidden { display: none; }
 
