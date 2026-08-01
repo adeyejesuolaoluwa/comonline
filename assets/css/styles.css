@@ -237,9 +237,6 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
   object-fit: cover;
   display: block;
 }
-.cover-1 { background: linear-gradient(140deg, #0f172a, #334155 65%, #c8a96a); }
-.cover-2 { background: linear-gradient(140deg, #1f2937, #7c2d12 60%, #f8f6f2); }
-.cover-3 { background: linear-gradient(140deg, #111827, #4b5563 60%, #d1d5db); }
 .cover-4 { background-image: url("../img/Living-with-bipolar.jpg"); background-size: cover; background-position: center; }
 .cover-10 { background: linear-gradient(140deg, #1f2937, #334155 55%, #8b94a6); }
 .book-card.is-hidden { display: none; }
