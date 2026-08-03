@@ -340,8 +340,33 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 
 @media (max-width: 720px) {
   .hero-title { max-width: 100%; }
+  .hero-copy, .section-copy, .muted, .book-meta p, .contact-panel p, .faq-item p { font-size: 1rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn, .hero-actions .pill-btn, .newsletter-form input, .contact-form input, .contact-form textarea { width: 100%; }
   .hero-stats { grid-template-columns: 1fr; }
   .newsletter-form { flex-direction: column; }
+  .hero-card, .feature-card, .contact-panel, .book-card, .testimonial-shell, .newsletter-card, .community-panel, .section-shell { padding: 1rem; }
+  .hero-card__head, .hero-card__footer { flex-direction: column; align-items: stretch; }
+  .hero-illustration { width: 100%; }
+  .book-card { min-height: auto; }
+  .book-cover { height: auto; }
+  .book-cover img { height: auto; }
+  .site-header { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+  .nav-link, .mobile-link { display: block; padding: 0.85rem 0; }
+  .footer-shell { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .cursor-glow, .page-glow { display: none; }
   .mobile-menu { display: flex; flex-direction: column; gap: 0.75rem; }
   .site-header .md\:flex { display: none !important; }
+}
+
+@media (max-width: 520px) {
+  .hero-title { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+  .hero-actions { gap: 0.75rem; }
+  .hero-stats div { padding: 0.9rem; }
+  .button, .btn, .pill-btn { width: 100%; }
+  .site-header nav { gap: 0.75rem; }
+  .book-card { gap: 0.75rem; }
+  .testimonial-card p { font-size: 1.05rem; }
 }
