@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -64,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenu?.classList.toggle('hidden');
   });
 
-  const currentTheme = localStorage.getItem('comonline_theme') || 'dark';
+  const currentTheme = localStorage.getItem('lwb_theme') || 'dark';
   if (currentTheme === 'light') body.classList.add('theme-light');
   themeToggle?.addEventListener('click', () => {
     const isLight = body.classList.toggle('theme-light');
-    localStorage.setItem('comonline_theme', isLight ? 'light' : 'dark');
+    localStorage.setItem('lwb_theme', isLight ? 'light' : 'dark');
     themeToggle.setAttribute('aria-pressed', String(isLight));
   });
 

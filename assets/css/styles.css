@@ -221,10 +221,10 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 
 .filter-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
 .filter-btn.active { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #111827; }
-.book-card { display: flex; flex-direction: column; gap: 1rem; min-height: 240px; }
+.book-card { display: flex; flex-direction: column; gap: 1rem; min-height: 240px; max-width: 640px; margin-inline: auto; }
 .book-cover {
   position: relative;
-  height: 220px;
+  height: 320px;
   border-radius: 1rem;
   border: 1px solid rgba(255,255,255,0.12);
   background-size: cover;
@@ -237,7 +237,7 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
   object-fit: cover;
   display: block;
 }
-.cover-4 { background-image: url("../img/Living-with-bipolar.jpg"); background-size: cover; background-position: center; }
+.cover-4 { background-image: url("../img/81pFcztlgCL._SY425_.jpg"); background-size: cover; background-position: center; }
 .cover-10 { background: linear-gradient(140deg, #1f2937, #334155 55%, #8b94a6); }
 .book-card.is-hidden { display: none; }
 
