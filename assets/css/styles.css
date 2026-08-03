@@ -184,8 +184,24 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 .hero-card__head, .hero-card__footer { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
 .hero-pill { display: inline-flex; align-items: center; padding: 0.45rem 0.75rem; border-radius: 999px; font-size: 0.8rem; border: 1px solid var(--border); color: var(--text); }
 .hero-pill.muted { color: var(--muted); }
-.hero-illustration { margin-top: 1rem; border-radius: 1.4rem; background: linear-gradient(145deg, rgba(200,169,106,0.15), rgba(15,23,42,0.08)); }
-.hero-card__footer { margin-top: 1rem; }
+.hero-illustration { margin-top: 1rem; border-radius: 1.4rem; background: linear-gradient(145deg, rgba(200,169,106,0.15), rgba(15,23,42,0.08)); }  .author-photo {
+    min-height: 380px;
+    border-radius: 1.4rem;
+    border: 1px solid var(--border);
+    background: radial-gradient(circle at top, rgba(255,255,255,0.08), rgba(15,23,42,0.12));
+    box-shadow: var(--shadow);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--muted);
+  }
+  .author-photo::before {
+    content: "Author portrait";
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }.hero-card__footer { margin-top: 1rem; }
 .label { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .2em; margin: 0 0 .25rem; }
 .text-link { color: var(--gold); font-weight: 600; }
 
