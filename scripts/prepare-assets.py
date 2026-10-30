@@ -1,7 +1,7 @@
 """Optional asset regeneration; requires Pillow. Original photographs stay intact."""
 from pathlib import Path
 from urllib.request import urlretrieve
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageOps
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGES = ROOT / 'assets/img'
@@ -18,14 +18,11 @@ for name, (url, directory) in fonts.items():
     license_path.write_text('\n'.join(line.rstrip() for line in license_path.read_text(encoding='utf-8').splitlines()) + '\n', encoding='utf-8')
 
 portrait = Image.open(IMAGES / 'author-portrait.jpg')
-for width in (540, 900):
+for width in (540, 900, 1080):
     resized = portrait.resize((width, round(portrait.height * width / portrait.width)), Image.Resampling.LANCZOS)
     resized.save(IMAGES / f'author-portrait-{width}.webp', quality=82, method=6)
 
 cover = Image.open(IMAGES / '81pFcztlgCL._SY425_.jpg').convert('RGB')
-# Atmospheric detail comes only from the cover artwork, excluding its lettering.
-detail = cover.crop((4, 290, 263, 380)).resize((640, 800), Image.Resampling.LANCZOS).filter(ImageFilter.GaussianBlur(12))
-detail.save(IMAGES / 'cover-atmosphere.webp', quality=75, method=6)
 
 social = Image.new('RGB', (1200, 630), '#f6f4ef')
 draw = ImageDraw.Draw(social)
@@ -39,4 +36,4 @@ draw.rectangle((792, 0, 1200, 630), fill='#181818')
 small = cover.resize((267, 425), Image.Resampling.LANCZOS)
 social.paste(small, (862, 102))
 social.save(IMAGES / 'social.jpg', quality=90, optimize=True)
-print('Prepared local fonts, responsive portraits, cover detail and 1200 × 630 sharing image.')
+print('Prepared local fonts, responsive portraits and 1200 × 630 sharing image.')

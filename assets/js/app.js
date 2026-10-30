@@ -2,7 +2,7 @@
 (() => {
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".primary-nav");
-  const mobile = window.matchMedia("(max-width: 760px)");
+  const mobile = window.matchMedia("(max-width: 960px)");
   if (toggle && nav) {
     document.documentElement.classList.add("nav-enhanced");
     const setOpen = (open, restoreFocus = false) => {
@@ -35,13 +35,39 @@
     mobile.addEventListener("change", sync);
     sync();
   }
+  const copyButton = document.querySelector("[data-copy-email]");
+  const copyStatus = document.getElementById("copy-status");
+  if (copyButton && copyStatus && navigator.clipboard?.writeText) {
+    copyButton.hidden = false;
+    copyButton.addEventListener("click", async () => {
+      copyButton.disabled = true;
+      copyButton.textContent = "Copying…";
+      copyStatus.textContent = "";
+      try {
+        await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
+        copyButton.textContent = "Copy again";
+        copyStatus.textContent = "Email address copied.";
+      } catch {
+        copyButton.textContent = "Copy address";
+        copyStatus.textContent =
+          "Could not copy. Select the email address above.";
+      } finally {
+        copyButton.disabled = false;
+      }
+    });
+  }
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("motion-ready");
   const pending = new Set();
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
+        if (!entry.isIntersecting) {
+          entry.target.classList.add("reveal-pending");
+          pending.add(entry.target);
+          continue;
+        }
         entry.target.classList.add("is-visible");
         pending.delete(entry.target);
         observer.unobserve(entry.target);
@@ -49,15 +75,10 @@
     },
     { threshold: 0.08 },
   );
-  // Batch layout reads before class writes to avoid repeated forced reflow.
-  const offscreen = [...document.querySelectorAll(".reveal")].filter(
-    (element) => element.getBoundingClientRect().top >= window.innerHeight,
-  );
-  offscreen.forEach((element) => {
-    element.classList.add("reveal-pending");
-    pending.add(element);
-    observer.observe(element);
-  });
+  // Let the browser report visibility after layout. No synchronous geometry reads.
+  document
+    .querySelectorAll(".reveal")
+    .forEach((element) => observer.observe(element));
   document.addEventListener("focusin", (event) => {
     const element = event.target.closest(".reveal-pending");
     if (element) {
@@ -66,8 +87,18 @@
       observer.unobserve(element);
     }
   });
-  let wordObserver;
-  document.querySelectorAll("[data-word-reveal]").forEach((statement) => {
+  const wordObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("lit");
+          wordObserver.unobserve(entry.target);
+        }
+      }
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 1 },
+  );
+  const prepareStatement = (statement) => {
     const walker = document.createTreeWalker(statement, NodeFilter.SHOW_TEXT);
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -90,23 +121,27 @@
       node.replaceWith(fragment);
     });
     statement.classList.add("word-reveal");
-    wordObserver ||= new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("lit");
-            wordObserver.unobserve(entry.target);
-          }
-        }
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 1 },
-    );
     words.forEach((word) => wordObserver.observe(word));
-  });
+  };
+  // Prepare long typographic passages only when they approach the viewport.
+  const statementObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        prepareStatement(entry.target);
+        statementObserver.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "240px 0px" },
+  );
+  document
+    .querySelectorAll("[data-word-reveal]")
+    .forEach((statement) => statementObserver.observe(statement));
   reducedMotion.addEventListener("change", (event) => {
     if (!event.matches) return;
     observer.disconnect();
-    wordObserver?.disconnect();
+    wordObserver.disconnect();
+    statementObserver.disconnect();
     pending.forEach((element) => element.classList.add("is-visible"));
     pending.clear();
     document
