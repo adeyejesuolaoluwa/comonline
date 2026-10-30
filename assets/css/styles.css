@@ -184,24 +184,118 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
 .hero-card__head, .hero-card__footer { display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
 .hero-pill { display: inline-flex; align-items: center; padding: 0.45rem 0.75rem; border-radius: 999px; font-size: 0.8rem; border: 1px solid var(--border); color: var(--text); }
 .hero-pill.muted { color: var(--muted); }
-.hero-illustration { margin-top: 1rem; border-radius: 1.4rem; background: linear-gradient(145deg, rgba(200,169,106,0.15), rgba(15,23,42,0.08)); }  .author-photo {
-    min-height: 380px;
-    border-radius: 1.4rem;
-    border: 1px solid var(--border);
-    background: radial-gradient(circle at top, rgba(255,255,255,0.08), rgba(15,23,42,0.12));
-    box-shadow: var(--shadow);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1.5rem;
-    color: var(--muted);
-  }
-  .author-photo::before {
-    content: "Author portrait";
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }.hero-card__footer { margin-top: 1rem; }
+.hero-illustration { margin-top: 1rem; border-radius: 1.4rem; background: linear-gradient(145deg, rgba(200,169,106,0.15), rgba(15,23,42,0.08)); }
+.hero-card__footer { margin-top: 1rem; }
+.hero-visual-wrap {
+  display: flex;
+  justify-content: center;
+}
+.hero-feature {
+  width: min(100%, 560px);
+  padding: 0;
+  overflow: hidden;
+  background: rgba(7, 10, 18, 0.36);
+}
+.cover-art {
+  position: relative;
+  min-height: 660px;
+  background:
+    linear-gradient(180deg, rgba(4, 10, 22, 0.18), rgba(3, 8, 17, 0.68)),
+    url("../img/author-portrait.jpg");
+  background-size: cover;
+  background-position: center center;
+  border-bottom: 1px solid var(--border);
+}
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, rgba(7, 15, 27, 0.05), rgba(4, 10, 18, 0.78));
+}
+.cover-copy {
+  width: 100%;
+  text-align: center;
+}
+.cover-label {
+  display: block;
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+.cover-title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.8;
+}
+.cover-title {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.6rem, 9vw, 11rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  color: #f4f0eb;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+.cover-subtitle {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  color: #f4f0eb;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+.cover-title--gold {
+  color: #d8bf7a;
+  text-shadow: 0 8px 30px rgba(200,169,106,0.25);
+}
+.cover-author {
+  margin: 1.2rem 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.2vw, 3.8rem);
+  letter-spacing: 0.22em;
+  color: #f3efe9;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.hero-card__footer--stacked {
+  display: block;
+  margin-top: 0;
+  padding: 1rem 1.25rem 1.4rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.hero-card__footer--stacked .label {
+  margin-bottom: 0.35rem;
+}
+.hero-card__footer--stacked h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.35;
+}
+.author-portrait-card {
+  border-radius: 2rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  padding: 1rem;
+}
+.author-portrait-card figure {
+  margin: 0;
+}
+.author-portrait-img {
+  width: 100%;
+  min-height: 320px;
+  display: block;
+  border-radius: 1.4rem;
+  object-fit: cover;
+}
+.author-profile { width: 100%; }
 .label { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: .2em; margin: 0 0 .25rem; }
 .text-link { color: var(--gold); font-weight: 600; }
 
@@ -385,4 +479,7 @@ body.theme-light .site-header { background: rgba(248,246,242,0.82); }
   .site-header nav { gap: 0.75rem; }
   .book-card { gap: 0.75rem; }
   .testimonial-card p { font-size: 1.05rem; }
+  .author-profile { display: block; }
+  .author-portrait-card { margin-top: 1rem; }
+  .author-portrait-img { min-height: 260px; }
 }
