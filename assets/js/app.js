@@ -99,6 +99,112 @@
   }
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
   document.documentElement.classList.add("motion-ready");
+  // A shared timeline is justified here: title, then invitation, in one cadence.
+  // Local, pinned vendor files keep the site independent of runtime CDNs.
+  let hasFinaleTimeline = false;
+  const setupFinale = () => {
+    if (reducedMotion.matches) return;
+    const title = document.querySelector(".finale-title");
+    // Do not replay a heading that has already entered through the fallback.
+    if (!title || title.getBoundingClientRect().top < innerHeight * 0.88)
+      return;
+    hasFinaleTimeline = true;
+    typeObserver.unobserve(title);
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const title = document.querySelector(".finale-title");
+      if (!title) return;
+      gsap
+        .timeline({
+          defaults: { ease: "power3.out", duration: 0.9 },
+          scrollTrigger: { trigger: title, start: "top 88%", once: true },
+        })
+        .fromTo(
+          title,
+          { y: 12, clipPath: "inset(0 0 100% 0)" },
+          {
+            y: 0,
+            clipPath: "inset(0 0 0% 0)",
+            immediateRender: false,
+            clearProps: "transform,clipPath",
+          },
+        )
+        .fromTo(
+          ".finale-copy > p",
+          { y: 10 },
+          { y: 0, immediateRender: false, clearProps: "transform" },
+          0.24,
+        );
+    });
+  };
+  const loadScript = (path) =>
+    new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = new URL(path, document.baseURI).href;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.append(script);
+    });
+  const finaleLoader = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      finaleLoader.disconnect();
+      loadScript("assets/js/vendor/gsap.min.js")
+        .then(() => loadScript("assets/js/vendor/ScrollTrigger.min.js"))
+        .then(setupFinale)
+        .catch(() => {
+          /* Native typography reveal remains available. */
+        });
+    },
+    { rootMargin: "1000px 0px" },
+  );
+  const finale = document.querySelector(".story-finale");
+  if (finale) finaleLoader.observe(finale);
+  // Observe each chapter separately: long biographies must never move as a layer.
+  const chapterLinks = [...document.querySelectorAll(".biography-index a")];
+  const visibleChapters = new Map();
+  const chapterObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting)
+          visibleChapters.set(entry.target.id, entry.intersectionRect.height);
+        else visibleChapters.delete(entry.target.id);
+      }
+      const current = [...visibleChapters].sort((a, b) => b[1] - a[1])[0]?.[0];
+      chapterLinks.forEach((link) => {
+        if (link.hash === `#${current}`)
+          link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-15% 0px -55% 0px", threshold: 0 },
+  );
+  document
+    .querySelectorAll(".bio-chapter")
+    .forEach((chapter) => chapterObserver.observe(chapter));
+  const typeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        typeObserver.unobserve(entry.target);
+        play(
+          entry.target,
+          [
+            { clipPath: "inset(0 0 100% 0)", transform: "translateY(12px)" },
+            { clipPath: "inset(0 0 0% 0)", transform: "translateY(0)" },
+          ],
+          { duration: 900 },
+        );
+      });
+    },
+    { threshold: 0.25 },
+  );
+  document
+    .querySelectorAll(
+      hasFinaleTimeline ? ".bio-chapter h3" : ".bio-chapter h3, .finale-title",
+    )
+    .forEach((heading) => typeObserver.observe(heading));
   const enteredScenes = new WeakSet();
   const sceneObserver = new IntersectionObserver(
     (entries) => {
@@ -115,6 +221,8 @@
         entry.target
           .querySelectorAll("[data-motion-step]")
           .forEach((step, index) => {
+            if (step.matches(".finale-title")) return;
+            if (hasFinaleTimeline && step.matches(".finale-copy > p")) return;
             play(
               step,
               [
@@ -243,6 +351,10 @@
     wordObserver.disconnect();
     statementObserver.disconnect();
     sceneObserver.disconnect();
+    typeObserver.disconnect();
+    finaleLoader.disconnect();
+    chapterObserver.disconnect();
+    chapterLinks.forEach((link) => link.removeAttribute("aria-current"));
     pending.forEach((element) => element.classList.add("is-visible"));
     pending.clear();
     document

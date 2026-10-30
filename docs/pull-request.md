@@ -1,11 +1,9 @@
-# Refine the memoir experience with native motion and a cinematic ending
+# Refine cinematic motion and biography within the approved design
 
-The site retains its cream/charcoal/cobalt identity, photographic split hero, original portrait and cover, serif typography, and minimal navigation. The opening now coordinates a portrait unmask, headline lines, jacket depth, CTA entrance, and progressive desktop parallax. One-shot native scene sequences connect the story, spotlight, author, and a substantial “The story continues” finale with a direct Amazon purchase path.
+The approved author site needed more deliberate entrance timing and stronger biography presentation. This pass retimes the existing hero mask and headline, gives the book a finite floating settle, refines book shadows, and adds chapter divisions, an opening drop cap, and an active biography index without changing verified wording, purchase links, palette, typography, or page order.
 
-The spotlight uses explicit grid rows and a static purchase control, eliminating dependence on animated inline text flow. The repetitive homepage author heading is replaced and its summary shortened; the four original full-biography paragraphs are preserved exactly. Content-driven hero sizing, intrinsic grid sizing, flexible metadata, and wrapping prevent overlap and overflow at 200% text size. Touch devices receive simpler book motion, unsupported browsers retain a static parallax fallback, and reduced motion cancels native and CSS effects. No runtime animation dependency was added.
+A locally vendored GSAP/ScrollTrigger timeline choreographs the final title and invitation. It loads only near the finale, with native fallback. Controls stay in normal flow; reduced-motion changes cancel/revert motion.
 
-Validation passes: 216 standard layouts across Chromium/Firefox/WebKit; 18 axe scans with zero reported violations; 210 scene, CTA timing/hit-test, text-integrity, reduced-motion, and enlarged-text checks; and 43 interaction/content checks. Local mobile Lighthouse scores are 97/100/100/100 for the homepage and 98/100/100/100 for the book page, both with zero measured TBT and CLS. See [before/after images, scene captures, and measurement conditions](cinematic-master-pass.md).
+Validation: static checks; 216 browser layouts, 18 axe scans, 33 interactions; 210 scene/enlarged-text checks; 42 regression checks; focused lazy-loading, reduced-motion, chapter and failed-library checks across Chromium/Firefox/WebKit. Final simulated-mobile Lighthouse: 97/100/100/100, LCP 2.3 s, TBT 0 ms, CLS 0. See [full evidence and limitations](motion-polish.md).
 
-The inherited email, edition data, canonical public URL, and legal copy require owner confirmation before publication. Live checkout and email deliverability are not certified. Original media and retailer destinations are unchanged. Work is on `feat/cinematic-master-pass`; production workflow and DNS are unchanged, with no push, merge, deployment, or PR creation performed.
-
-Preview: `npm run build`, `npm run check`, `npm run preview`.
+Local contributor branch: `feat/cinematic-motion-polish`. No push, merge, deployment, or workflow change. Physical-device/assistive-technology certification, public URL/mailbox verification, and retailer checkout remain outside local testing.

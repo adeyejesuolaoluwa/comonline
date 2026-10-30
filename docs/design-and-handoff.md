@@ -20,7 +20,7 @@ The original page URLs, author biography, synopsis, paperback details, portrait,
 - Spacing uses a 4/8/12/16/24/32/40/48/64/80/96px rhythm. Main content has a 1328px maximum width.
 - Headings use an editorial serif scale with breakpoint changes; body copy is 16px and supporting copy varies by role. Wide screens use paired columns; phones use a single reading sequence.
 - Buttons and controls have visible hover, active and keyboard focus states. Links retain native browser behavior. Outbound purchases identify Amazon and announce new tabs to assistive technology.
-- Scroll reveals use IntersectionObserver and transforms/opacity. Initial viewport content is never delayed. No scroll listeners, scroll manipulation, autoplay, custom cursor, flashing, or WebGL.
+- Scroll reveals use IntersectionObserver and transforms/opacity. Initial viewport content is never delayed. No custom scroll handlers, scroll manipulation, autoplay, custom cursor, flashing, or WebGL. The homepage finale uses locally vendored GSAP/ScrollTrigger; the rest retains native motion.
 - Words in the standalone statement become readable in sequence when observed. Reduced motion displays everything immediately. Keyboard focus makes any pending reveal visible. Reading, navigation, email, and native FAQ interactions work with JavaScript disabled.
 
 ## Content and services to confirm before publication
@@ -39,7 +39,7 @@ Review all nine generated pages (the original six, privacy, terms, and 404), the
 
 The existing workflow deploys root files on a push to `main`. It was retained as requested. The repository owner should separately review its older action versions and Pages configuration before choosing to release. No workflow run, deployment, push, PR creation, merge, or DNS change was performed for this redesign.
 
-Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. The current work is on `feat/cinematic-master-pass`, based on the preceding refinement branch.
+Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. The current work is on `feat/cinematic-motion-polish`, based on the preceding refinement branch.
 
 ## Files and maintenance
 
