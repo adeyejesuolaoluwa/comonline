@@ -87,6 +87,7 @@ h3 {
   margin: 0;
   font-weight: 500;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 cite {
   font-style: normal;
@@ -151,6 +152,8 @@ figure {
   line-height: 1.25rem;
   font-weight: 600;
   min-height: 44px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .text-link {
   padding-block: 12px;
@@ -184,6 +187,7 @@ figure {
   font-weight: 600;
   padding: 12px 24px;
   min-height: 48px;
+  max-width: 100%;
   border: 1px solid var(--blue);
   border-radius: 2px;
   transition:
@@ -310,12 +314,12 @@ figure {
   position: relative;
   display: grid;
   grid-template-columns: 52% 48%;
-  min-height: 680px;
-  height: calc(100svh - 96px);
-  max-height: 900px;
+  min-height: clamp(680px, calc(100svh - 96px), 900px);
+  height: auto;
   isolation: isolate;
 }
 .hero-copy {
+  min-width: 0;
   padding: 64px 80px 32px max(var(--gutter), calc((100vw - var(--content)) / 2));
   display: flex;
   flex-direction: column;
@@ -337,6 +341,7 @@ figure {
   flex-shrink: 0;
 }
 .hero-title {
+  overflow-wrap: anywhere;
   font-size: 8rem;
   line-height: 1;
   letter-spacing: -0.05em;
@@ -351,7 +356,7 @@ figure {
 }
 .title-mask > span {
   display: block;
-  white-space: nowrap;
+  white-space: normal;
   transform-origin: left bottom;
 }
 .hero-description {
@@ -396,6 +401,10 @@ figure {
 .hero-portrait img {
   width: 100%;
   height: 100%;
+}
+.hero-portrait picture {
+  position: absolute;
+  inset: 0;
 }
 .hero-portrait img {
   object-fit: cover;
@@ -533,6 +542,17 @@ figure {
 }
 .memoir-feature-copy .eyebrow {
   color: #bec8ff;
+  margin: 0;
+}
+.memoir-feature-copy {
+  display: grid;
+  grid-auto-rows: auto;
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+}
+.memoir-feature-copy .statement {
+  margin: 0;
 }
 .statement {
   font-family: var(--serif);
@@ -543,11 +563,14 @@ figure {
 }
 .memoir-feature-copy > p:not(.eyebrow) {
   max-width: 430px;
-  margin-top: 32px;
+  margin: 0;
   color: #c2c3bf;
 }
 .memoir-feature-copy .button {
-  margin-top: 8px;
+  margin: 0;
+  justify-self: start;
+  align-self: start;
+  max-width: 100%;
 }
 .word-reveal .word {
   opacity: 0.65;
@@ -745,6 +768,7 @@ figure {
 }
 .art-top {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 16px;
   font-size: 0.75rem;
@@ -792,13 +816,17 @@ figure {
   max-width: 440px;
 }
 .book-facts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   border-top: 1px solid var(--line);
   padding-top: 24px;
   margin-top: 32px;
   margin-bottom: 0;
+}
+.book-facts > div {
+  flex: 1 1 80px;
+  min-width: min-content;
 }
 dt {
   font-size: 0.75rem;
@@ -1175,6 +1203,119 @@ dd {
   margin-top: 16px;
 }
 
+/* The final scene reverses the spotlight: invitation first, jacket at the right. */
+.story-finale {
+  padding-block: 96px;
+  background: var(--night);
+  color: var(--paper);
+}
+.finale-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 32px 96px;
+  align-items: center;
+}
+.finale-label {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #bec8ff;
+}
+.finale-title {
+  overflow-wrap: anywhere;
+  grid-column: 1;
+  font-family: var(--serif);
+  font-size: 6rem;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+.finale-title > span {
+  color: #bec6dc;
+}
+.finale-art {
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 2 / 4;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  perspective: 1400px;
+}
+.finale-art .book-object {
+  width: 252px;
+  transform: perspective(1200px) rotate(5deg) rotateY(-12deg);
+  box-shadow:
+    -16px 32px 48px #0008,
+    0 0 0 1px #ffffff26;
+}
+.finale-art figcaption {
+  max-width: 100%;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.finale-art figcaption span {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #c2c3bf;
+}
+.finale-copy {
+  min-width: 0;
+  grid-column: 1;
+  display: grid;
+  gap: 32px;
+  align-self: start;
+}
+.finale-copy > p {
+  max-width: 440px;
+  color: #c2c3bf;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.finale-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+}
+.finale-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-decoration: underline;
+  text-decoration-color: #777b86;
+  transition:
+    color 0.4s var(--ease),
+    text-decoration-color 0.4s var(--ease);
+}
+.finale-link:hover {
+  color: #bec8ff;
+  text-decoration-color: #bec8ff;
+}
+.story-finale a:focus-visible {
+  outline-color: var(--paper);
+}
+.finale-colophon {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid #555751;
+  padding-top: 24px;
+  margin-top: 32px;
+  color: #c2c3bf;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
 /* Shared colophon. */
 .site-footer {
   background: var(--paper);
@@ -1258,6 +1399,31 @@ dd {
   transform: translateY(24px);
 }
 @media (prefers-reduced-motion: no-preference) {
+  .portrait-reveal::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--paper);
+    transform: scaleX(0);
+    transform-origin: right;
+    pointer-events: none;
+  }
+  .portrait-reveal figcaption {
+    z-index: 2;
+  }
+  .motion-ready .portrait-reveal::after {
+    animation: portrait-unmask 0.65s var(--ease) 0.04s backwards;
+  }
+  .motion-ready .hero-actions {
+    animation: action-enter 0.55s var(--ease) 0.16s backwards;
+  }
+  .motion-ready .hero-actions:focus-within {
+    animation: none;
+  }
+  .motion-ready .author-opening-portrait img {
+    animation: portrait-settle 1.4s var(--ease) backwards;
+  }
   .motion-ready .hero-title .title-mask > span {
     animation: line-enter 0.7s var(--ease) both;
   }
@@ -1288,21 +1454,75 @@ dd {
   }
   @keyframes jacket-enter {
     from {
-      transform: translateY(16px) rotate(-9deg);
+      transform: perspective(800px) translateY(16px) rotate(-9deg)
+        rotateY(-12deg);
     }
     to {
       transform: translateY(0) rotate(-6deg);
+    }
+  }
+  @keyframes portrait-unmask {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes action-enter {
+    from {
+      transform: translateY(8px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+/* Scroll-driven enhancement: static fallback and no JavaScript scroll handlers. */
+@supports (animation-timeline: view()) {
+  @media (min-width: 961px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .motion-ready .signature-hero {
+      view-timeline-name: --hero-exit;
+      view-timeline-axis: block;
+    }
+    .motion-ready .hero-portrait picture {
+      display: block;
+      height: calc(100% + 48px);
+      margin-top: -24px;
+      animation: hero-drift 1s var(--ease) both;
+      animation-timeline: --hero-exit;
+      animation-range: exit 0% exit 100%;
+    }
+    @keyframes hero-drift {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(24px);
+      }
     }
   }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .memoir-cover:hover .book-object,
   .book-detail-art:hover .book-object {
-    transform: rotate(-2deg) rotateY(-4deg) translateY(-8px);
+    transform: rotate(-4deg) rotateY(-6deg) translateY(-4px);
+  }
+  .finale-art:hover .book-object {
+    transform: perspective(1200px) rotate(3deg) rotateY(-8deg) translateY(-4px);
   }
 }
 
 @media (max-width: 1200px) {
+  .finale-grid {
+    column-gap: 64px;
+  }
+  .finale-title {
+    font-size: 6rem;
+  }
+  .finale-art .book-object {
+    width: 224px;
+  }
   :root {
     --gutter: 32px;
   }
@@ -1384,6 +1604,26 @@ dd {
   }
 }
 @media (max-width: 960px) {
+  .story-finale {
+    padding-block: 80px;
+  }
+  .finale-grid {
+    column-gap: 48px;
+  }
+  .finale-title {
+    font-size: 4.5rem;
+  }
+  .finale-art {
+    min-height: 440px;
+    gap: 32px;
+  }
+  .finale-art .book-object {
+    width: 190px;
+  }
+  .finale-copy > p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
   .header-inner {
     min-height: 88px;
     flex-wrap: wrap;
@@ -1472,8 +1712,8 @@ dd {
     display: none;
   }
   .signature-hero {
-    min-height: 640px;
-    height: calc(100svh - 88px);
+    min-height: clamp(640px, calc(100svh - 88px), 900px);
+    height: auto;
   }
   .hero-copy {
     padding-top: 48px;
@@ -1682,6 +1922,45 @@ dd {
   }
 }
 @media (max-width: 760px) {
+  .story-finale {
+    padding-block: 64px;
+  }
+  .finale-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .finale-label,
+  .finale-title,
+  .finale-art,
+  .finale-copy,
+  .finale-colophon {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .finale-label {
+    order: 0;
+  }
+  .finale-title {
+    order: 1;
+    font-size: 4.5rem;
+  }
+  .finale-art {
+    order: 2;
+    min-height: 0;
+    padding-block: 16px;
+    gap: 32px;
+  }
+  .finale-art .book-object {
+    width: 205px;
+  }
+  .finale-copy {
+    order: 3;
+    gap: 24px;
+  }
+  .finale-colophon {
+    order: 4;
+    margin-top: 8px;
+  }
   :root {
     --gutter: 24px;
   }
@@ -1810,7 +2089,7 @@ dd {
     letter-spacing: 0.08em;
   }
   .memoir-feature-copy > p:not(.eyebrow) {
-    margin-top: 24px;
+    margin: 0;
   }
   .coda-biography {
     padding-top: 0;
@@ -2072,7 +2351,7 @@ dd {
   }
   .correspondence-guide > div {
     display: grid;
-    grid-template-columns: 32px 1fr;
+    grid-template-columns: 32px minmax(0, 1fr);
     gap: 8px 16px;
   }
   .correspondence-guide h2 {
@@ -2126,6 +2405,18 @@ dd {
   }
 }
 @media (max-width: 520px) {
+  .finale-title {
+    font-size: 3.75rem;
+  }
+  .finale-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .finale-colophon {
+    flex-direction: column;
+    gap: 8px;
+  }
   .hero-title {
     font-size: 4.5rem;
   }
@@ -2190,6 +2481,9 @@ dd {
   }
 }
 @media (max-width: 360px) {
+  .finale-art .book-object {
+    width: 180px;
+  }
   :root {
     --gutter: 20px;
   }
@@ -2311,6 +2605,18 @@ dd {
   }
 }
 @media print {
+  .story-finale {
+    background: white;
+    color: black;
+    break-before: page;
+  }
+  .finale-title > span,
+  .finale-label,
+  .finale-copy > p,
+  .finale-art figcaption span,
+  .finale-colophon {
+    color: black;
+  }
   body {
     background: white;
     color: black;
