@@ -2434,11 +2434,33 @@ dd {
   }
 }
 @media (max-width: 520px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .hero-actions .button,
+  .finale-actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .hero-actions .quiet-link {
+    align-self: flex-start;
+    min-height: 44px;
+    font-size: 0.875rem;
+  }
+  .coda-biography p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .footer-links a {
+    min-height: 44px;
+  }
   .finale-title {
     font-size: 3.75rem;
   }
   .finale-actions {
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
     gap: 16px;
   }
@@ -2450,7 +2472,7 @@ dd {
     font-size: 4.5rem;
   }
   .hero-actions {
-    gap: 16px;
+    gap: 8px;
   }
   .hero-actions .button {
     padding-inline: 16px;
@@ -2495,7 +2517,7 @@ dd {
     line-height: 2.25rem;
   }
   .hero-actions .quiet-link {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     gap: 12px;
   }
   .footer-main {
@@ -2521,7 +2543,7 @@ dd {
   }
   .hero-actions {
     gap: 8px;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
   }
   .hero-portrait {

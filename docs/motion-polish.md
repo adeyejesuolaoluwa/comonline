@@ -53,3 +53,11 @@ The root-URL diagnostic run reported three 404-return URL mismatches because the
 ## Remaining limitations
 
 Automated emulation is not physical-device or assistive-technology certification. Firefox keeps the intended static portrait fallback. The book float is a finite entrance rather than a perpetual loop. Browser screenshots cannot convey timing; use the local preview with normal motion to review choreography. Lab Lighthouse measurements are single simulated-mobile runs, not field Core Web Vitals or INP. The public domain, mailbox delivery, and live retailer stock/checkout remain owner/external verification items inherited from the approved foundation.
+
+## Phone arrangement follow-up
+
+Reviewed all nine phone-page screenshots and refined only the narrow-screen layout (520 px and below): hero actions now stack with a full-width primary button and a separate 44 px secondary target; the final purchase button also fills the available width; the homepage author summary uses 24/32 px type; footer navigation retains 44 px tap height. Desktop composition and content remain unchanged.
+
+[Updated 390 px homepage screenshot](screenshots/phone-review-home.webp). Raw captures for all pages at 390 px are available locally in `artifacts/phone-review/`.
+
+Validation: 162 phone layouts passed across Chromium, Firefox, and WebKit at 320, 360, 375, 390, 414, and 430 px, covering all nine pages. Hero actions remain stacked with a 44 px secondary target; no horizontal overflow. `npm run check` also passed. These are browser viewport checks rather than physical-device certification.
