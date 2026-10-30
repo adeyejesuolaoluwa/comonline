@@ -8,6 +8,8 @@ The [cinematic master pass](docs/cinematic-master-pass.md) preserves that direct
 
 The current [motion and visual-polish pass](docs/motion-polish.md) preserves the approved foundation and documents the latest implementation, screenshots, and validation.
 
+The [final production refinement](docs/production-finish.md) records the current responsive composition, per-subject motion timing, and browser verification.
+
 ## Preview
 
 Requires Node.js 20 or later. No install step is needed.

@@ -1,0 +1,166 @@
+{
+  "branch": "feat/cinematic-motion-polish",
+  "static_check": "9 pages and 202 local links/assets passed",
+  "browser_qa": {
+    "browsers": {
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0",
+      "webkit": "26.6"
+    },
+    "layouts": 216,
+    "accessibility_scans": 18,
+    "interactions": 33,
+    "failures": [],
+    "unavailable": []
+  },
+  "scene_checks": {
+    "checks": 210,
+    "failures": [],
+    "features": {
+      "chromium": {
+        "scrollTimeline": true
+      },
+      "firefox": {
+        "scrollTimeline": false
+      },
+      "webkit": {
+        "scrollTimeline": true
+      }
+    },
+    "passed": 210
+  },
+  "focused_motion": [
+    {
+      "browser": "chromium",
+      "startup_without_gsap": true,
+      "gsap_loaded_near_finale": true,
+      "finale_cleared": true,
+      "reduced_motion_reverted": true,
+      "chapter_index": true,
+      "mobile_vendor_failure_fallback": true,
+      "book_waits_for_own_entrance": true,
+      "runtime_errors": []
+    },
+    {
+      "browser": "firefox",
+      "startup_without_gsap": true,
+      "gsap_loaded_near_finale": true,
+      "finale_cleared": true,
+      "reduced_motion_reverted": true,
+      "chapter_index": true,
+      "mobile_vendor_failure_fallback": true,
+      "book_waits_for_own_entrance": true,
+      "runtime_errors": []
+    },
+    {
+      "browser": "webkit",
+      "startup_without_gsap": true,
+      "gsap_loaded_near_finale": true,
+      "finale_cleared": true,
+      "reduced_motion_reverted": true,
+      "chapter_index": true,
+      "mobile_vendor_failure_fallback": true,
+      "book_waits_for_own_entrance": true,
+      "runtime_errors": []
+    }
+  ],
+  "regression_checks": {
+    "checks": 42,
+    "passed": [
+      "First-load animation is active",
+      "Entrance finishes; no continuous animation",
+      "320px: no horizontal overflow",
+      "320px: book does not cover portrait captions",
+      "375px: no horizontal overflow",
+      "375px: book does not cover portrait captions",
+      "390px: no horizontal overflow",
+      "390px: book does not cover portrait captions",
+      "412px: no horizontal overflow",
+      "412px: book does not cover portrait captions",
+      "768px: no horizontal overflow",
+      "768px: book does not cover portrait captions",
+      "1024px: no horizontal overflow",
+      "1024px: book does not cover portrait captions",
+      "1366px: no horizontal overflow",
+      "1366px: book does not cover portrait captions",
+      "1440px: no horizontal overflow",
+      "1440px: book does not cover portrait captions",
+      "1920px: no horizontal overflow",
+      "1920px: book does not cover portrait captions",
+      "Tablet has an appropriately sized menu control",
+      "Tablet navigation text is at least 16px when open",
+      "Contact has no unconnected submission form",
+      "Email destination matches site configuration",
+      "Copy confirmation follows a real clipboard write",
+      "Clipboard error is visible and leaves a usable control",
+      "privacy: footer opens the actual legal page",
+      "privacy: browser history returns to contact",
+      "terms: footer opens the actual legal page",
+      "terms: browser history returns to contact",
+      "index: all Amazon destinations match preserved URLs",
+      "authors: all Amazon destinations match preserved URLs",
+      "books: all Amazon destinations match preserved URLs",
+      "what-we-write: all Amazon destinations match preserved URLs",
+      "faq: all Amazon destinations match preserved URLs",
+      "contact: all Amazon destinations match preserved URLs",
+      "privacy: all Amazon destinations match preserved URLs",
+      "terms: all Amazon destinations match preserved URLs",
+      "404: all Amazon destinations match preserved URLs",
+      "Reduced motion prevents entrance animation",
+      "Reduced motion avoids first-load motion setup",
+      "Reduced motion keeps the headline visible immediately"
+    ]
+  },
+  "lighthouse": {
+    "version": "12.8.2",
+    "fetch_time": "2026-10-30T23:55:24.321Z",
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "benchmarkIndex": 1143,
+      "credits": {
+        "axe-core": "4.10.3"
+      }
+    },
+    "config": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "scores": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": {
+        "value": 2256.1717000000003,
+        "display": "2.3\u00a0s"
+      },
+      "total-blocking-time": {
+        "value": 198.91415000000052,
+        "display": "200\u00a0ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      }
+    },
+    "warnings": []
+  }
+}

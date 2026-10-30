@@ -205,65 +205,64 @@
       hasFinaleTimeline ? ".bio-chapter h3" : ".bio-chapter h3, .finale-title",
     )
     .forEach((heading) => typeObserver.observe(heading));
-  const enteredScenes = new WeakSet();
+  // Observe the visible subject, not its whole section: on phones the book
+  // and invitation can be several screens apart within the same composition.
   const sceneObserver = new IntersectionObserver(
     (entries) => {
-      for (const entry of entries) {
-        if (
-          !entry.isIntersecting ||
-          enteredScenes.has(entry.target) ||
-          reducedMotion.matches
-        )
-          continue;
-        enteredScenes.add(entry.target);
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || reducedMotion.matches) return;
         sceneObserver.unobserve(entry.target);
-        // Leaf text moves as a unit; purchase controls stay in normal, static flow.
-        entry.target
-          .querySelectorAll("[data-motion-step]")
-          .forEach((step, index) => {
-            if (step.matches(".finale-title")) return;
-            if (hasFinaleTimeline && step.matches(".finale-copy > p")) return;
-            play(
-              step,
-              [
-                { transform: "translateY(10px)" },
-                { transform: "translateY(0)" },
-              ],
-              { delay: index * motion.stagger },
-            );
-          });
-        entry.target
-          .querySelectorAll("[data-book-reveal] .book-object")
-          .forEach((book) => {
-            const finale = Boolean(book.closest(".finale-art"));
-            const simple = window.matchMedia(
-              "(max-width: 760px), (pointer: coarse)",
-            ).matches;
-            const rest = finale
-              ? "perspective(1200px) rotate(5deg) rotateY(-12deg)"
-              : "rotate(-6deg) rotateY(-10deg)";
-            play(
-              book,
-              [
-                {
-                  transform: simple
-                    ? `${rest} translateY(8px)`
-                    : `perspective(1200px) translateY(16px) rotate(${finale ? 8 : -9}deg) rotateY(-18deg)`,
-                },
-                {
-                  transform: rest,
-                },
-              ],
-              { duration: simple ? 680 : 960, delay: 60 },
-            );
-          });
-      }
+        const step = entry.target;
+        if (step.matches(".finale-title")) return;
+        if (hasFinaleTimeline && step.matches(".finale-copy > p")) return;
+        play(
+          step,
+          [
+            { opacity: 0.86, transform: "translateY(10px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { delay: step.matches(".eyebrow") ? 0 : 70 },
+        );
+      });
     },
     { threshold: 0.12 },
   );
   document
-    .querySelectorAll("[data-motion-group]")
-    .forEach((scene) => sceneObserver.observe(scene));
+    .querySelectorAll("[data-motion-step]")
+    .forEach((step) => sceneObserver.observe(step));
+  const bookObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || reducedMotion.matches) return;
+        bookObserver.unobserve(entry.target);
+        const book = entry.target.querySelector(".book-object");
+        if (!book) return;
+        const finale = entry.target.matches(".finale-art");
+        const simple = window.matchMedia(
+          "(max-width: 760px), (pointer: coarse)",
+        ).matches;
+        const rest = finale
+          ? "perspective(1200px) rotate(5deg) rotateY(-12deg)"
+          : "rotate(-6deg) rotateY(-10deg)";
+        play(
+          book,
+          [
+            {
+              transform: simple
+                ? `${rest} translateY(8px)`
+                : `perspective(1200px) translateY(16px) rotate(${finale ? 8 : -9}deg) rotateY(-18deg)`,
+            },
+            { transform: rest },
+          ],
+          { duration: simple ? 680 : 960, delay: 60 },
+        );
+      });
+    },
+    { threshold: 0.15 },
+  );
+  document
+    .querySelectorAll("[data-book-reveal]")
+    .forEach((book) => bookObserver.observe(book));
   const pending = new Set();
   const observer = new IntersectionObserver(
     (entries) => {
@@ -351,6 +350,7 @@
     wordObserver.disconnect();
     statementObserver.disconnect();
     sceneObserver.disconnect();
+    bookObserver.disconnect();
     typeObserver.disconnect();
     finaleLoader.disconnect();
     chapterObserver.disconnect();

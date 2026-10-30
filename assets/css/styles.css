@@ -434,12 +434,13 @@ figure {
   margin-left: 96px;
 }
 .hero-book {
+  --book-angle: -6deg;
   position: absolute;
   width: 144px;
   left: calc(52% - 72px);
   bottom: 32px;
   z-index: 2;
-  transform: rotate(-6deg);
+  transform: rotate(var(--book-angle));
   transition: transform 0.7s var(--ease);
 }
 .hero-book img {
@@ -583,11 +584,12 @@ figure {
 .author-coda {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 48px 96px;
+  gap: 32px 64px;
 }
 .coda-biography {
   max-width: 520px;
-  padding-top: 48px;
+  padding-top: 0;
+  align-self: center;
   color: var(--muted);
 }
 .reader-note {
@@ -1484,10 +1486,10 @@ dd {
         rotateY(-12deg);
     }
     55% {
-      transform: translateY(-5px) rotate(-5deg);
+      transform: translateY(-5px) rotate(calc(var(--book-angle) + 1deg));
     }
     100% {
-      transform: translateY(0) rotate(-6deg);
+      transform: translateY(0) rotate(var(--book-angle));
     }
   }
   @keyframes portrait-unmask {
@@ -2450,8 +2452,8 @@ dd {
     font-size: 0.875rem;
   }
   .coda-biography p {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
   .footer-links a {
     min-height: 44px;
@@ -2489,7 +2491,8 @@ dd {
     min-height: 80px;
   }
   .hero-book {
-    width: 120px;
+    --book-angle: -4deg;
+    width: clamp(96px, 26vw, 112px);
   }
   .hero-colophon {
     font-size: 0.75rem;
@@ -2550,7 +2553,7 @@ dd {
     height: 380px;
   }
   .hero-book {
-    width: 112px;
+    width: 96px;
   }
   .hero-colophon {
     gap: 12px;
