@@ -2,6 +2,8 @@
 
 A static, editorial author website for P.J. Ray's memoir. Built with semantic HTML, custom CSS, and progressive vanilla JavaScript. No framework, runtime dependencies, CDN scripts, analytics, cookies, or database.
 
+The second creative pass adds a photographic split opening, a shorter narrative, indexed biography, distinct book presentation, readable tablet navigation, and finite motion. See the [round-two audit, comparisons, and validation](docs/creative-refinement.md).
+
 ## Preview
 
 Requires Node.js 20 or later. No install step is needed.
@@ -38,6 +40,9 @@ npm run check
 python -m pip install playwright
 python -m playwright install
 python scripts/qa.py --axe-path PATH/TO/axe.min.js
+python scripts/refinement-qa.py
+# Optional full-page review captures also require Pillow:
+python scripts/capture.py
 ```
 
 The browser suite covers nine pages at 320, 375, 390, 768, 1024, 1366, 1440, and 1920px across Chromium, Firefox, and WebKit. Screenshots and reports go to ignored `artifacts/qa/`. The axe argument is optional; supply an axe-core installation to run accessibility checks as well. See [validation results](docs/validation.md).

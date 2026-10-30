@@ -67,11 +67,12 @@ with sync_playwright() as p:
             report['interactions'].append(f'{engine}/{slug}: mobile open, Escape, focus, resize')
             if slug == 'faq':
                 summary = page.locator('summary').first
+                was_open = page.locator('details').first.get_attribute('open') is not None
                 summary.focus()
                 page.keyboard.press('Enter')
-                expect(page.locator('details').first.get_attribute('open') is not None, f'{engine}: FAQ opens by keyboard')
+                expect((page.locator('details').first.get_attribute('open') is not None) != was_open, f'{engine}: FAQ toggles by Enter')
                 page.keyboard.press('Space')
-                expect(page.locator('details').first.get_attribute('open') is None, f'{engine}: FAQ closes by keyboard')
+                expect((page.locator('details').first.get_attribute('open') is not None) == was_open, f'{engine}: FAQ restores by Space')
                 report['interactions'].append(f'{engine}: FAQ Enter/Space')
             if engine == 'chromium' and args.axe_path:
                 for width in (390, 1440):
@@ -96,8 +97,9 @@ with sync_playwright() as p:
         fallback = context.new_page()
         fallback.goto(args.url + 'faq.html')
         expect(fallback.locator('#primary-nav').is_visible(), f'{engine}: no-JS navigation visible')
+        fallback_open = fallback.locator('details').first.get_attribute('open') is not None
         fallback.locator('summary').first.click()
-        expect(fallback.locator('details').first.get_attribute('open') is not None, f'{engine}: no-JS FAQ works')
+        expect((fallback.locator('details').first.get_attribute('open') is not None) != fallback_open, f'{engine}: no-JS FAQ works')
         fallback.screenshot(path=str(OUT / f'{engine}-no-js.png'), full_page=True)
         context.close()
         # Normal-motion reveals must eventually show all content.

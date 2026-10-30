@@ -1,7 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
+const directory = process.argv[2] || 'artifacts';
+const artifact = (name) => new URL(`../${directory}/${name}`, import.meta.url);
 const report = { generated: new Date().toISOString(), lighthouse: {} };
 for (const name of ['baseline', 'home', 'book']) {
-  const data = JSON.parse(await readFile(new URL(`../artifacts/lighthouse-${name}-mobile.json`, import.meta.url), 'utf8'));
+  const data = JSON.parse(await readFile(artifact(`lighthouse-${name}-mobile.json`), 'utf8'));
   report.lighthouse[name] = {
     url: data.requestedUrl,
     fetched: data.fetchTime,
@@ -24,5 +26,8 @@ report.browserQA = {
   failures: qa.failures,
   unavailable: qa.unavailable
 };
-await writeFile(new URL('../artifacts/summary.json', import.meta.url), JSON.stringify(report, null, 2));
+try {
+  report.refinementQA = JSON.parse(await readFile(artifact('interaction-report.json'), 'utf8'));
+} catch (error) { if (error.code !== 'ENOENT') throw error; }
+await writeFile(artifact('summary.json'), JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report, null, 2));

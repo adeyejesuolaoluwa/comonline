@@ -1,5 +1,7 @@
 # Living with Bipolar: redesign and owner handoff
 
+The second creative pass is documented in [Creative refinement](creative-refinement.md), including the current photographic direction, screenshots, validation, and release notes. The initial decisions below remain useful architectural context; the round-two document supersedes the original composition and motion descriptions.
+
 ## Audit and implementation decision
 
 The original repository was a six-page static site, developed from an Atelier publishing scaffold. Git history showed the transition from a multi-book template to a single memoir. Every page, the shared CSS and JavaScript, image assets, README, and Pages workflow were reviewed. The only pre-existing local change was the untracked `new design.md` brief; it remains outside the implementation commits.
@@ -8,7 +10,7 @@ Baseline browser inspection reproduced `Cannot set properties of null (setting '
 
 **Architecture:** retain static HTML rather than introduce a client framework. A zero-dependency Node build composes shared layout and metadata with page bodies. Generated HTML is committed at the original URLs. The existing Pages workflow can continue serving the root without installing Node or running a build. No production deployment settings, DNS, or workflow permissions were changed.
 
-**Design:** a literary editorial composition rather than a dashboard or card grid. Warm paper, ink, and cobalt sampled from the existing book cover; Cormorant Garamond for literary headings and Manrope for readable supporting text. Both fonts are served locally with OFL licenses. The cover detail is used as atmosphere, with the full original cover presented in its own restrained book object. The real portrait remains the only author photograph.
+**Design:** a literary editorial composition rather than a dashboard or card grid. Warm paper, ink, and cobalt sampled from the existing book cover; Cormorant Garamond for literary headings and Manrope for readable supporting text. Both fonts are served locally with OFL licenses. The original portrait forms the photographic opening, with the book crossing its seam. The dedicated book page uses a warm paper stage. The real portrait remains the only author photograph.
 
 The original page URLs, author biography, synopsis, paperback details, portrait, cover, and Amazon book/author links are preserved. “What We Write” is now called “The story” in navigation, at the same URL. Unattributed endorsements were replaced with an invitation for readers to respond. No ratings, endorsements, publication history, or medical outcomes were invented.
 
@@ -37,7 +39,7 @@ Review all nine generated pages (the original six, privacy, terms, and 404), the
 
 The existing workflow deploys root files on a push to `main`. It was retained as requested. The repository owner should separately review its older action versions and Pages configuration before choosing to release. No workflow run, deployment, push, PR creation, merge, or DNS change was performed for this redesign.
 
-Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. Work is on `feat/cinematic-author-redesign`.
+Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. The current work is on `feat/editorial-refinement`, based on the first redesign branch.
 
 ## Files and maintenance
 

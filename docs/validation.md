@@ -1,5 +1,7 @@
 # Validation — October 30, 2026
 
+This file records the **first redesign**. Current round-two results and before/after comparisons are in [Creative refinement](creative-refinement.md) and [refinement-lab-results.json](refinement-lab-results.json).
+
 ## Automated checks
 
 - `npm run build`: generates nine static HTML pages, sitemap, robots.txt, and `.nojekyll` with no runtime dependencies.
