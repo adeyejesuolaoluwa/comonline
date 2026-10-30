@@ -1,157 +1,116 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const themeToggle = document.getElementById('themeToggle');
-  const searchToggle = document.getElementById('searchToggle');
-  const search = document.getElementById('search');
-  const searchClose = document.getElementById('searchClose');
-  const searchInput = document.getElementById('searchInput');
-  const progressBar = document.querySelector('.scroll-progress');
-  const backToTop = document.getElementById('backToTop');
-  const cursorGlow = document.querySelector('.cursor-glow');
-  const revealItems = document.querySelectorAll('.reveal');
-  const counters = document.querySelectorAll('.count');
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const bookCards = document.querySelectorAll('.book-card');
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
-  const testimonialPrev = document.getElementById('testimonialPrev');
-  const testimonialNext = document.getElementById('testimonialNext');
-  const countdown = document.getElementById('countdown');
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
+/* Progressive enhancement. Reading, links, email and FAQ work without JavaScript. */
+(() => {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".primary-nav");
+  const mobile = window.matchMedia("(max-width: 760px)");
+  if (toggle && nav) {
+    document.documentElement.classList.add("nav-enhanced");
+    const setOpen = (open, restoreFocus = false) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
+      toggle.querySelector(".menu-label").textContent = open ? "Close" : "Menu";
+      if (restoreFocus) toggle.focus();
+    };
+    const sync = () => {
+      toggle.hidden = !mobile.matches;
+      setOpen(false);
+    };
+    toggle.addEventListener("click", () =>
+      setOpen(toggle.getAttribute("aria-expanded") !== "true"),
+    );
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        toggle.getAttribute("aria-expanded") === "true"
+      )
+        setOpen(false, true);
     });
-  }, { threshold: 0.12 });
-  revealItems.forEach((item) => revealObserver.observe(item));
-
-  const counterObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const target = Number(entry.target.dataset.target || 0);
-        let current = 0;
-        const step = Math.max(1, Math.ceil(target / 70));
-        const timer = window.setInterval(() => {
-          current += step;
-          if (current >= target) {
-            entry.target.textContent = target;
-            window.clearInterval(timer);
-          } else {
-            entry.target.textContent = current;
-          }
-        }, 18);
+    document.addEventListener("click", (event) => {
+      if (mobile.matches && !event.target.closest(".site-header"))
+        setOpen(false);
+    });
+    nav.addEventListener("click", (event) => {
+      if (event.target.closest("a") && mobile.matches) setOpen(false);
+    });
+    mobile.addEventListener("change", sync);
+    sync();
+  }
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+  const pending = new Set();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-visible");
+        pending.delete(entry.target);
         observer.unobserve(entry.target);
       }
-    });
-  }, { threshold: 0.6 });
-  counters.forEach((counter) => counterObserver.observe(counter));
-
-  const updateProgress = () => {
-    const percent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    if (progressBar) progressBar.style.width = `${Number.isFinite(percent) ? percent : 0}%`;
-    backToTop?.classList.toggle('visible', window.scrollY > 480);
-  };
-  updateProgress();
-  window.addEventListener('scroll', updateProgress, { passive: true });
-
-  menuToggle?.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    mobileMenu?.classList.toggle('hidden');
+    },
+    { threshold: 0.08 },
+  );
+  // Batch layout reads before class writes to avoid repeated forced reflow.
+  const offscreen = [...document.querySelectorAll(".reveal")].filter(
+    (element) => element.getBoundingClientRect().top >= window.innerHeight,
+  );
+  offscreen.forEach((element) => {
+    element.classList.add("reveal-pending");
+    pending.add(element);
+    observer.observe(element);
   });
-
-  const currentTheme = localStorage.getItem('lwb_theme') || 'dark';
-  if (currentTheme === 'light') body.classList.add('theme-light');
-  themeToggle?.addEventListener('click', () => {
-    const isLight = body.classList.toggle('theme-light');
-    localStorage.setItem('lwb_theme', isLight ? 'light' : 'dark');
-    themeToggle.setAttribute('aria-pressed', String(isLight));
-  });
-
-  const openSearch = () => {
-    search?.removeAttribute('hidden');
-    search?.setAttribute('aria-hidden', 'false');
-    searchToggle?.setAttribute('aria-expanded', 'true');
-    searchInput?.focus();
-  };
-  const closeSearch = () => {
-    search?.setAttribute('hidden', '');
-    search?.setAttribute('aria-hidden', 'true');
-    searchToggle?.setAttribute('aria-expanded', 'false');
-  };
-  searchToggle?.addEventListener('click', () => {
-    const open = searchToggle.getAttribute('aria-expanded') === 'true';
-    if (open) closeSearch(); else openSearch();
-  });
-  searchClose?.addEventListener('click', closeSearch);
-  document.addEventListener('keydown', (event) => {
-    if (event.key === '/' && document.activeElement !== searchInput) {
-      event.preventDefault();
-      openSearch();
+  document.addEventListener("focusin", (event) => {
+    const element = event.target.closest(".reveal-pending");
+    if (element) {
+      element.classList.add("is-visible");
+      pending.delete(element);
+      observer.unobserve(element);
     }
-    if (event.key === 'Escape') closeSearch();
   });
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      filterButtons.forEach((item) => item.classList.remove('active'));
-      button.classList.add('active');
-      const filter = button.dataset.filter || 'all';
-      bookCards.forEach((card) => {
-        const matches = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('is-hidden', !matches);
+  let wordObserver;
+  document.querySelectorAll("[data-word-reveal]").forEach((statement) => {
+    const walker = document.createTreeWalker(statement, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    let index = 0;
+    const words = [];
+    nodes.forEach((node) => {
+      const fragment = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part.trim()) {
+          fragment.append(document.createTextNode(part));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = part;
+        span.style.transitionDelay = `${index++ * 45}ms`;
+        words.push(span);
+        fragment.append(span);
       });
+      node.replaceWith(fragment);
     });
+    statement.classList.add("word-reveal");
+    wordObserver ||= new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("lit");
+            wordObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 1 },
+    );
+    words.forEach((word) => wordObserver.observe(word));
   });
-
-  let testimonialIndex = 0;
-  const showTestimonial = (index) => {
-    testimonialCards.forEach((card, idx) => card.classList.toggle('active', idx === index));
-  };
-  const cycleTestimonials = (direction = 1) => {
-    testimonialIndex = (testimonialIndex + direction + testimonialCards.length) % testimonialCards.length;
-    showTestimonial(testimonialIndex);
-  };
-  testimonialPrev?.addEventListener('click', () => cycleTestimonials(-1));
-  testimonialNext?.addEventListener('click', () => cycleTestimonials(1));
-  window.setInterval(() => cycleTestimonials(1), 7000);
-
-  const eventDate = new Date('2026-09-14T19:00:00');
-  const tickCountdown = () => {
-    const diff = eventDate - new Date();
-    if (diff <= 0) {
-      countdown.textContent = 'Now live';
-      return;
-    }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    countdown.textContent = `${days}d ${hours}h ${minutes}m until the salon`;
-  };
-  tickCountdown();
-  window.setInterval(tickCountdown, 60000);
-
-  backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  document.addEventListener('mousemove', (event) => {
-    if (cursorGlow) {
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
-    }
+  reducedMotion.addEventListener("change", (event) => {
+    if (!event.matches) return;
+    observer.disconnect();
+    wordObserver?.disconnect();
+    pending.forEach((element) => element.classList.add("is-visible"));
+    pending.clear();
+    document
+      .querySelectorAll(".word")
+      .forEach((word) => word.classList.add("lit"));
   });
-
-  document.querySelectorAll('form').forEach((form) => {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const button = form.querySelector('button');
-      if (button) {
-        button.textContent = 'Submitted';
-        button.disabled = true;
-      }
-    });
-  });
-});
+})();

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adeyejesuolaoluwa.github.io/comonline/sitemap.xml
