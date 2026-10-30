@@ -4,6 +4,8 @@ A static, editorial author website for P.J. Ray's memoir. Built with semantic HT
 
 The second creative pass adds a photographic split opening, a shorter narrative, indexed biography, distinct book presentation, readable tablet navigation, and finite motion. See the [round-two audit, comparisons, and validation](docs/creative-refinement.md).
 
+The [cinematic master pass](docs/cinematic-master-pass.md) preserves that direction and adds a portrait unmask, native scene choreography, progressive desktop parallax, stable spotlight controls, enlarged-text fixes, and a substantial “The story continues” finale. It includes current measurements and before/after scene captures.
+
 ## Preview
 
 Requires Node.js 20 or later. No install step is needed.
@@ -41,6 +43,7 @@ python -m pip install playwright
 python -m playwright install
 python scripts/qa.py --axe-path PATH/TO/axe.min.js
 python scripts/refinement-qa.py
+python scripts/master-pass-qa.py
 # Optional full-page review captures also require Pillow:
 python scripts/capture.py
 ```

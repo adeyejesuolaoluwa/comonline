@@ -1,5 +1,7 @@
 # Creative refinement, round two
 
+This report records round two. The subsequent [cinematic master pass](cinematic-master-pass.md) contains the current implementation, closing scene, animation, and enlarged-text results.
+
 ## Visual audit and decisions
 
 The first redesign (`0b21233`) was reviewed as a rendered website at 1440px, 768px, and 390px across all nine pages. It had a consistent identity but too much repeated composition. The most important findings were:

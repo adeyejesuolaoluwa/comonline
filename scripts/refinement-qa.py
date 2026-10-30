@@ -6,12 +6,13 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'artifacts/round-two'
-OUT.mkdir(parents=True, exist_ok=True)
 parser = argparse.ArgumentParser()
 parser.add_argument('--url', default='http://127.0.0.1:8000/comonline/')
 parser.add_argument('--baseline-url', default=None)
+parser.add_argument('--out', type=Path, default=ROOT / 'artifacts/round-two')
 args = parser.parse_args()
+OUT = args.out
+OUT.mkdir(parents=True, exist_ok=True)
 URL = args.url
 config = json.loads((ROOT / 'site.config.json').read_text(encoding='utf8'))
 checks = []
@@ -34,10 +35,10 @@ with sync_playwright() as p:
         baseline.close()
     page.set_viewport_size({'width': 1440, 'height': 900})
     page.goto(URL, wait_until='domcontentloaded')
-    check(page.evaluate('document.getAnimations().some(a=>a.playState==="running")'), 'First-load animation is active')
+    check(page.evaluate('document.getAnimations().some(a=>a.playState==="running" && a.timeline instanceof DocumentTimeline)'), 'First-load animation is active')
     page.screenshot(path=str(OUT / 'entrance-start.png'))
     page.wait_for_timeout(2000)
-    check(not page.evaluate('document.getAnimations().some(a=>a.playState==="running")'), 'Entrance finishes; no continuous animation')
+    check(not page.evaluate('document.getAnimations().some(a=>a.playState==="running" && a.timeline instanceof DocumentTimeline)'), 'Entrance finishes; no continuous animation')
     page.screenshot(path=str(OUT / 'entrance-complete.png'))
     for width in (320, 375, 390, 412, 768, 1024, 1366, 1440, 1920):
         page.set_viewport_size({'width': width, 'height': 900})

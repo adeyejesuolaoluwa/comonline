@@ -1,6 +1,6 @@
 # Validation — October 30, 2026
 
-This file records the **first redesign**. Current round-two results and before/after comparisons are in [Creative refinement](creative-refinement.md) and [refinement-lab-results.json](refinement-lab-results.json).
+This file records the **first redesign**. Current results are in [Cinematic master pass](cinematic-master-pass.md) and [master-pass-lab-results.json](master-pass-lab-results.json). Round-two results remain in [Creative refinement](creative-refinement.md).
 
 ## Automated checks
 

@@ -29,5 +29,8 @@ report.browserQA = {
 try {
   report.refinementQA = JSON.parse(await readFile(artifact('interaction-report.json'), 'utf8'));
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
+try {
+  report.sceneQA = JSON.parse(await readFile(artifact('scene-report.json'), 'utf8'));
+} catch (error) { if (error.code !== 'ENOENT') throw error; }
 await writeFile(artifact('summary.json'), JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report, null, 2));

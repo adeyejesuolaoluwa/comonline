@@ -1,6 +1,6 @@
 # Living with Bipolar: redesign and owner handoff
 
-The second creative pass is documented in [Creative refinement](creative-refinement.md), including the current photographic direction, screenshots, validation, and release notes. The initial decisions below remain useful architectural context; the round-two document supersedes the original composition and motion descriptions.
+The current implementation is documented in [Cinematic master pass](cinematic-master-pass.md). [Creative refinement](creative-refinement.md) records the earlier photographic direction. The initial decisions below remain architectural context; the current report supersedes older composition and motion descriptions.
 
 ## Audit and implementation decision
 
@@ -39,7 +39,7 @@ Review all nine generated pages (the original six, privacy, terms, and 404), the
 
 The existing workflow deploys root files on a push to `main`. It was retained as requested. The repository owner should separately review its older action versions and Pages configuration before choosing to release. No workflow run, deployment, push, PR creation, merge, or DNS change was performed for this redesign.
 
-Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. The current work is on `feat/editorial-refinement`, based on the first redesign branch.
+Local commits use the explicit agent identity `Codex <codex@local.invalid>` because no Git author was configured. No repository or global Git identity settings were changed. The current work is on `feat/cinematic-master-pass`, based on the preceding refinement branch.
 
 ## Files and maintenance
 
