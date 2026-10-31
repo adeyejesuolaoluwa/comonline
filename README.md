@@ -57,7 +57,7 @@ The browser suite covers nine pages at 320, 375, 390, 768, 1024, 1366, 1440, and
 
 ## Deployment
 
-Generated root files remain compatible with the existing GitHub Pages workflow. No production deployment or DNS settings were changed. Owner review and merge are required before the existing workflow publishes from `main`. Confirm the base URL and review the existing workflow's action versions before release.
+Vercel is the production host at https://comonline.vercel.app/. Pull requests and main-branch changes run the Website checks workflow; the former GitHub Pages deployment workflow has been removed to avoid a second publishing path.
 
 [Design and handoff](docs/design-and-handoff.md) · [Prepared PR description](docs/pull-request.md)
 
@@ -70,3 +70,12 @@ npm run build
 node scripts/package-vercel.mjs
 npm run check
 ```
+
+## Production safeguards
+
+- `Website checks` builds, validates metadata and 202 local links/assets, checks JavaScript syntax, and verifies the public deployment output on pull requests and pushes to main.
+- `Production health check` checks live pages, animation assets, canonical metadata, sitemap, robots, and the branded 404 every six hours (minute 17), or manually from Actions. Transient failures are retried once. Failed runs use GitHub's workflow notifications, subject to each person's notification settings.
+- Scheduled GitHub Actions can be delayed or disabled after repository inactivity; this is periodic smoke monitoring, not continuous uptime coverage.
+- Run the same live checks locally with `npm run check:production`.
+
+See [launch status and remaining owner actions](docs/launch-readiness.md).
