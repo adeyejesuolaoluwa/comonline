@@ -36,7 +36,7 @@ The build uses Node's standard library. Original paths (`authors.html`, `books.h
 
 Contact is an honest `mailto:` path, not a submission form. The original email address must be confirmed by the owner. Existing paperback metadata is preserved; the retailer remains authoritative for the edition being purchased. There are no invented testimonials or ratings.
 
-**Before release:** confirm the public URL, email address, paperback data, and privacy/terms copy. The configured URL is the expected GitHub Pages project URL; it is not a verified live deployment. See [owner handoff](docs/design-and-handoff.md).
+**Before release:** confirm the public URL, email address, paperback data, and privacy/terms copy. The configured production URL is https://comonline.vercel.app/. See [owner handoff](docs/design-and-handoff.md).
 
 ## Validation
 
@@ -60,3 +60,13 @@ The browser suite covers nine pages at 320, 375, 390, 768, 1024, 1366, 1440, and
 Generated root files remain compatible with the existing GitHub Pages workflow. No production deployment or DNS settings were changed. Owner review and merge are required before the existing workflow publishes from `main`. Confirm the base URL and review the existing workflow's action versions before release.
 
 [Design and handoff](docs/design-and-handoff.md) · [Prepared PR description](docs/pull-request.md)
+
+## Vercel production
+
+`vercel.json` builds the static pages and packages only generated HTML, assets, robots, and the sitemap into `dist/`. Source, docs, test tooling, and local briefs are excluded from the deployment output. The production canonical URL and branded 404 base are generated from `site.config.json`.
+
+```powershell
+npm run build
+node scripts/package-vercel.mjs
+npm run check
+```
