@@ -97,7 +97,7 @@ for (const [slug, label, title, description] of pages) {
         name: config.author,
         url: new URL("authors.html", config.url).href,
         sameAs: [config.amazonAuthor],
-        image: new URL("assets/img/author-portrait.jpg", config.url).href,
+        image: new URL("assets/img/pj-ray-portrait.jpg", config.url).href,
       },
       {
         "@type": "Book",
