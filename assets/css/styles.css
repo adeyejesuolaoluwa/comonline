@@ -19,6 +19,8 @@
   --ink: #20211f;
   --muted: #62635f;
   --blue: #253eb9;
+  --gold: #dfb466;
+  --gold-ink: #78551b;
   --line: #d5d4cc;
   --night: #181818;
   --serif: "Cormorant Garamond", Georgia, serif;
@@ -395,7 +397,7 @@ figure {
 .hero-portrait {
   overflow: hidden;
   position: relative;
-  background: #d6d3cc;
+  background: var(--paper);
 }
 .hero-portrait picture,
 .hero-portrait img {
@@ -403,13 +405,15 @@ figure {
   height: 100%;
 }
 .hero-portrait picture {
+  display: block;
   position: absolute;
   inset: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px);
+  mask-image: linear-gradient(to right, transparent, #000 48px);
 }
 .hero-portrait img {
   object-fit: cover;
   object-position: 50% 37%;
-  filter: grayscale(1) sepia(0.14);
   transform-origin: 55% 40%;
 }
 .hero-portrait figcaption {
@@ -540,10 +544,10 @@ figure {
   font-size: 0.75rem;
   line-height: 1rem;
   letter-spacing: 0.12em;
-  color: #bfc0ba;
+  color: var(--gold);
 }
 .memoir-feature-copy .eyebrow {
-  color: #bec8ff;
+  color: var(--gold);
   margin: 0;
 }
 .memoir-feature-copy {
@@ -650,7 +654,13 @@ figure {
   inset: 0;
   object-fit: cover;
   object-position: 50% 32%;
-  filter: grayscale(1) sepia(0.1);
+}
+.author-opening-portrait picture {
+  display: block;
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px);
+  mask-image: linear-gradient(to right, transparent, #000 48px);
 }
 .author-opening-portrait figcaption {
   position: absolute;
@@ -789,7 +799,7 @@ figure {
   content: "";
   position: absolute;
   inset: 24px;
-  border: 1px solid #c9c4b7;
+  border: 1px solid #bca77c;
   z-index: -1;
 }
 .art-top {
@@ -800,7 +810,7 @@ figure {
   font-size: 0.75rem;
   line-height: 1rem;
   letter-spacing: 0.12em;
-  color: var(--muted);
+  color: var(--gold-ink);
 }
 .book-stage {
   flex: 1;
@@ -1263,7 +1273,7 @@ dd {
 .finale-label {
   grid-column: 1 / -1;
   margin: 0;
-  color: #bec8ff;
+  color: var(--gold);
 }
 .finale-title {
   overflow-wrap: anywhere;
@@ -1274,7 +1284,7 @@ dd {
   letter-spacing: -0.045em;
 }
 .finale-title > span {
-  color: #bec6dc;
+  color: var(--gold);
 }
 .finale-art {
   min-width: 0;
@@ -1972,6 +1982,11 @@ dd {
   }
 }
 @media (max-width: 760px) {
+  .hero-portrait picture,
+  .author-opening-portrait picture {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 40px);
+    mask-image: linear-gradient(to bottom, transparent, #000 40px);
+  }
   .story-finale {
     padding-block: 64px;
   }
