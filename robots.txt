@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://comonline.vercel.app/sitemap.xml

@@ -1,157 +1,364 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const themeToggle = document.getElementById('themeToggle');
-  const searchToggle = document.getElementById('searchToggle');
-  const search = document.getElementById('search');
-  const searchClose = document.getElementById('searchClose');
-  const searchInput = document.getElementById('searchInput');
-  const progressBar = document.querySelector('.scroll-progress');
-  const backToTop = document.getElementById('backToTop');
-  const cursorGlow = document.querySelector('.cursor-glow');
-  const revealItems = document.querySelectorAll('.reveal');
-  const counters = document.querySelectorAll('.count');
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const bookCards = document.querySelectorAll('.book-card');
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
-  const testimonialPrev = document.getElementById('testimonialPrev');
-  const testimonialNext = document.getElementById('testimonialNext');
-  const countdown = document.getElementById('countdown');
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+/* Progressive enhancement. Reading, links, email and FAQ work without JavaScript. */
+(() => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const motion = {
+    ease: "cubic-bezier(0.32, 0.72, 0, 1)",
+    duration: 720,
+    stagger: 70,
+  };
+  const activeAnimations = new Set();
+  const play = (element, frames, options = {}) => {
+    if (reducedMotion.matches || !element.animate) return;
+    const animation = element.animate(frames, {
+      duration: motion.duration,
+      easing: motion.ease,
+      fill: "backwards",
+      ...options,
+    });
+    activeAnimations.add(animation);
+    animation.finished.then(
+      () => activeAnimations.delete(animation),
+      () => activeAnimations.delete(animation),
+    );
+    return animation;
+  };
+  reducedMotion.addEventListener("change", (event) => {
+    if (event.matches)
+      activeAnimations.forEach((animation) => animation.cancel());
+  });
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".primary-nav");
+  const mobile = window.matchMedia("(max-width: 960px)");
+  if (toggle && nav) {
+    let menuAnimations = [];
+    document.documentElement.classList.add("nav-enhanced");
+    const setOpen = (open, restoreFocus = false) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
+      toggle.querySelector(".menu-label").textContent = open ? "Close" : "Menu";
+      menuAnimations.forEach((animation) => animation?.cancel());
+      menuAnimations = [];
+      if (open && mobile.matches) {
+        menuAnimations = [...nav.children].map((link, index) =>
+          play(
+            link,
+            [
+              { opacity: 0.8, transform: "translateY(4px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 360, delay: index * 30 },
+          ),
+        );
+      }
+      if (restoreFocus) toggle.focus();
+    };
+    const sync = () => {
+      toggle.hidden = !mobile.matches;
+      setOpen(false);
+    };
+    toggle.addEventListener("click", () =>
+      setOpen(toggle.getAttribute("aria-expanded") !== "true"),
+    );
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        toggle.getAttribute("aria-expanded") === "true"
+      )
+        setOpen(false, true);
+    });
+    document.addEventListener("click", (event) => {
+      if (mobile.matches && !event.target.closest(".site-header"))
+        setOpen(false);
+    });
+    nav.addEventListener("click", (event) => {
+      if (event.target.closest("a") && mobile.matches) setOpen(false);
+    });
+    mobile.addEventListener("change", sync);
+    sync();
+  }
+  const copyButton = document.querySelector("[data-copy-email]");
+  const copyStatus = document.getElementById("copy-status");
+  if (copyButton && copyStatus && navigator.clipboard?.writeText) {
+    copyButton.hidden = false;
+    copyButton.addEventListener("click", async () => {
+      copyButton.disabled = true;
+      copyButton.textContent = "Copying…";
+      copyStatus.textContent = "";
+      try {
+        await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
+        copyButton.textContent = "Copy again";
+        copyStatus.textContent = "Email address copied.";
+      } catch {
+        copyButton.textContent = "Copy address";
+        copyStatus.textContent =
+          "Could not copy. Select the email address above.";
+      } finally {
+        copyButton.disabled = false;
       }
     });
-  }, { threshold: 0.12 });
-  revealItems.forEach((item) => revealObserver.observe(item));
-
-  const counterObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const target = Number(entry.target.dataset.target || 0);
-        let current = 0;
-        const step = Math.max(1, Math.ceil(target / 70));
-        const timer = window.setInterval(() => {
-          current += step;
-          if (current >= target) {
-            entry.target.textContent = target;
-            window.clearInterval(timer);
-          } else {
-            entry.target.textContent = current;
-          }
-        }, 18);
+  }
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("motion-ready");
+  // A shared timeline is justified here: title, then invitation, in one cadence.
+  // Local, pinned vendor files keep the site independent of runtime CDNs.
+  let hasFinaleTimeline = false;
+  const setupFinale = () => {
+    if (reducedMotion.matches) return;
+    const title = document.querySelector(".finale-title");
+    // Do not replay a heading that has already entered through the fallback.
+    if (!title || title.getBoundingClientRect().top < innerHeight * 0.88)
+      return;
+    hasFinaleTimeline = true;
+    typeObserver.unobserve(title);
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      const title = document.querySelector(".finale-title");
+      if (!title) return;
+      gsap
+        .timeline({
+          defaults: { ease: "power3.out", duration: 0.9 },
+          scrollTrigger: { trigger: title, start: "top 88%", once: true },
+        })
+        .fromTo(
+          title,
+          { y: 12, clipPath: "inset(0 0 100% 0)" },
+          {
+            y: 0,
+            clipPath: "inset(0 0 0% 0)",
+            immediateRender: false,
+            clearProps: "transform,clipPath",
+          },
+        )
+        .fromTo(
+          ".finale-copy > p",
+          { y: 10 },
+          { y: 0, immediateRender: false, clearProps: "transform" },
+          0.24,
+        );
+    });
+  };
+  const loadScript = (path) =>
+    new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = new URL(path, document.baseURI).href;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.append(script);
+    });
+  const finaleLoader = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      finaleLoader.disconnect();
+      loadScript("assets/js/vendor/gsap.min.js")
+        .then(() => loadScript("assets/js/vendor/ScrollTrigger.min.js"))
+        .then(setupFinale)
+        .catch(() => {
+          /* Native typography reveal remains available. */
+        });
+    },
+    { rootMargin: "1000px 0px" },
+  );
+  const finale = document.querySelector(".story-finale");
+  if (finale) finaleLoader.observe(finale);
+  // Observe each chapter separately: long biographies must never move as a layer.
+  const chapterLinks = [...document.querySelectorAll(".biography-index a")];
+  const visibleChapters = new Map();
+  const chapterObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting)
+          visibleChapters.set(entry.target.id, entry.intersectionRect.height);
+        else visibleChapters.delete(entry.target.id);
+      }
+      const current = [...visibleChapters].sort((a, b) => b[1] - a[1])[0]?.[0];
+      chapterLinks.forEach((link) => {
+        if (link.hash === `#${current}`)
+          link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-15% 0px -55% 0px", threshold: 0 },
+  );
+  document
+    .querySelectorAll(".bio-chapter")
+    .forEach((chapter) => chapterObserver.observe(chapter));
+  const typeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        typeObserver.unobserve(entry.target);
+        play(
+          entry.target,
+          [
+            { clipPath: "inset(0 0 100% 0)", transform: "translateY(12px)" },
+            { clipPath: "inset(0 0 0% 0)", transform: "translateY(0)" },
+          ],
+          { duration: 900 },
+        );
+      });
+    },
+    { threshold: 0.25 },
+  );
+  document
+    .querySelectorAll(
+      hasFinaleTimeline ? ".bio-chapter h3" : ".bio-chapter h3, .finale-title",
+    )
+    .forEach((heading) => typeObserver.observe(heading));
+  // Observe the visible subject, not its whole section: on phones the book
+  // and invitation can be several screens apart within the same composition.
+  const sceneObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || reducedMotion.matches) return;
+        sceneObserver.unobserve(entry.target);
+        const step = entry.target;
+        if (step.matches(".finale-title")) return;
+        if (hasFinaleTimeline && step.matches(".finale-copy > p")) return;
+        play(
+          step,
+          [
+            { opacity: 0.86, transform: "translateY(10px)" },
+            { opacity: 1, transform: "translateY(0)" },
+          ],
+          { delay: step.matches(".eyebrow") ? 0 : 70 },
+        );
+      });
+    },
+    { threshold: 0.12 },
+  );
+  document
+    .querySelectorAll("[data-motion-step]")
+    .forEach((step) => sceneObserver.observe(step));
+  const bookObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || reducedMotion.matches) return;
+        bookObserver.unobserve(entry.target);
+        const book = entry.target.querySelector(".book-object");
+        if (!book) return;
+        const finale = entry.target.matches(".finale-art");
+        const simple = window.matchMedia(
+          "(max-width: 760px), (pointer: coarse)",
+        ).matches;
+        const rest = finale
+          ? "perspective(1200px) rotate(5deg) rotateY(-12deg)"
+          : "rotate(-6deg) rotateY(-10deg)";
+        play(
+          book,
+          [
+            {
+              transform: simple
+                ? `${rest} translateY(8px)`
+                : `perspective(1200px) translateY(16px) rotate(${finale ? 8 : -9}deg) rotateY(-18deg)`,
+            },
+            { transform: rest },
+          ],
+          { duration: simple ? 680 : 960, delay: 60 },
+        );
+      });
+    },
+    { threshold: 0.15 },
+  );
+  document
+    .querySelectorAll("[data-book-reveal]")
+    .forEach((book) => bookObserver.observe(book));
+  const pending = new Set();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) {
+          entry.target.classList.add("reveal-pending");
+          pending.add(entry.target);
+          continue;
+        }
+        entry.target.classList.add("is-visible");
+        pending.delete(entry.target);
         observer.unobserve(entry.target);
       }
-    });
-  }, { threshold: 0.6 });
-  counters.forEach((counter) => counterObserver.observe(counter));
-
-  const updateProgress = () => {
-    const percent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    if (progressBar) progressBar.style.width = `${Number.isFinite(percent) ? percent : 0}%`;
-    backToTop?.classList.toggle('visible', window.scrollY > 480);
-  };
-  updateProgress();
-  window.addEventListener('scroll', updateProgress, { passive: true });
-
-  menuToggle?.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  const currentTheme = localStorage.getItem('lwb_theme') || 'dark';
-  if (currentTheme === 'light') body.classList.add('theme-light');
-  themeToggle?.addEventListener('click', () => {
-    const isLight = body.classList.toggle('theme-light');
-    localStorage.setItem('lwb_theme', isLight ? 'light' : 'dark');
-    themeToggle.setAttribute('aria-pressed', String(isLight));
-  });
-
-  const openSearch = () => {
-    search?.removeAttribute('hidden');
-    search?.setAttribute('aria-hidden', 'false');
-    searchToggle?.setAttribute('aria-expanded', 'true');
-    searchInput?.focus();
-  };
-  const closeSearch = () => {
-    search?.setAttribute('hidden', '');
-    search?.setAttribute('aria-hidden', 'true');
-    searchToggle?.setAttribute('aria-expanded', 'false');
-  };
-  searchToggle?.addEventListener('click', () => {
-    const open = searchToggle.getAttribute('aria-expanded') === 'true';
-    if (open) closeSearch(); else openSearch();
-  });
-  searchClose?.addEventListener('click', closeSearch);
-  document.addEventListener('keydown', (event) => {
-    if (event.key === '/' && document.activeElement !== searchInput) {
-      event.preventDefault();
-      openSearch();
-    }
-    if (event.key === 'Escape') closeSearch();
-  });
-
-  filterButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      filterButtons.forEach((item) => item.classList.remove('active'));
-      button.classList.add('active');
-      const filter = button.dataset.filter || 'all';
-      bookCards.forEach((card) => {
-        const matches = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('is-hidden', !matches);
-      });
-    });
-  });
-
-  let testimonialIndex = 0;
-  const showTestimonial = (index) => {
-    testimonialCards.forEach((card, idx) => card.classList.toggle('active', idx === index));
-  };
-  const cycleTestimonials = (direction = 1) => {
-    testimonialIndex = (testimonialIndex + direction + testimonialCards.length) % testimonialCards.length;
-    showTestimonial(testimonialIndex);
-  };
-  testimonialPrev?.addEventListener('click', () => cycleTestimonials(-1));
-  testimonialNext?.addEventListener('click', () => cycleTestimonials(1));
-  window.setInterval(() => cycleTestimonials(1), 7000);
-
-  const eventDate = new Date('2026-09-14T19:00:00');
-  const tickCountdown = () => {
-    const diff = eventDate - new Date();
-    if (diff <= 0) {
-      countdown.textContent = 'Now live';
-      return;
-    }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    countdown.textContent = `${days}d ${hours}h ${minutes}m until the salon`;
-  };
-  tickCountdown();
-  window.setInterval(tickCountdown, 60000);
-
-  backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  document.addEventListener('mousemove', (event) => {
-    if (cursorGlow) {
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
+    },
+    { threshold: 0.08 },
+  );
+  // Let the browser report visibility after layout. No synchronous geometry reads.
+  document
+    .querySelectorAll(".reveal")
+    .forEach((element) => observer.observe(element));
+  document.addEventListener("focusin", (event) => {
+    const element = event.target.closest(".reveal-pending");
+    if (element) {
+      element.classList.add("is-visible");
+      pending.delete(element);
+      observer.unobserve(element);
     }
   });
-
-  document.querySelectorAll('form').forEach((form) => {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const button = form.querySelector('button');
-      if (button) {
-        button.textContent = 'Submitted';
-        button.disabled = true;
+  const wordObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("lit");
+          wordObserver.unobserve(entry.target);
+        }
       }
+    },
+    { rootMargin: "0px 0px -12% 0px", threshold: 1 },
+  );
+  const preparedStatements = new WeakSet();
+  const prepareStatement = (statement) => {
+    if (preparedStatements.has(statement)) return;
+    preparedStatements.add(statement);
+    const walker = document.createTreeWalker(statement, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    let index = 0;
+    const words = [];
+    nodes.forEach((node) => {
+      const fragment = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part.trim()) {
+          fragment.append(document.createTextNode(part));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = part;
+        span.style.transitionDelay = `${index++ * 45}ms`;
+        words.push(span);
+        fragment.append(span);
+      });
+      node.replaceWith(fragment);
     });
+    statement.classList.add("word-reveal");
+    words.forEach((word) => wordObserver.observe(word));
+  };
+  // Prepare long typographic passages only when they approach the viewport.
+  const statementObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        prepareStatement(entry.target);
+        statementObserver.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "240px 0px" },
+  );
+  document
+    .querySelectorAll("[data-word-reveal]")
+    .forEach((statement) => statementObserver.observe(statement));
+  reducedMotion.addEventListener("change", (event) => {
+    if (!event.matches) return;
+    observer.disconnect();
+    wordObserver.disconnect();
+    statementObserver.disconnect();
+    sceneObserver.disconnect();
+    bookObserver.disconnect();
+    typeObserver.disconnect();
+    finaleLoader.disconnect();
+    chapterObserver.disconnect();
+    chapterLinks.forEach((link) => link.removeAttribute("aria-current"));
+    pending.forEach((element) => element.classList.add("is-visible"));
+    pending.clear();
+    document
+      .querySelectorAll(".word")
+      .forEach((word) => word.classList.add("lit"));
   });
-});
+})();
