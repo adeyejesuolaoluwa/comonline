@@ -408,13 +408,25 @@ figure {
   display: block;
   position: absolute;
   inset: 0;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px);
-  mask-image: linear-gradient(to right, transparent, #000 48px);
 }
 .hero-portrait img {
   object-fit: cover;
-  object-position: 50% 37%;
+  --portrait-focus: 50% 37%;
+  object-position: var(--portrait-focus);
   transform-origin: 55% 40%;
+}
+/* Use only the cutout's alpha; the visible pixels remain the original photo. */
+.hero-portrait img,
+.author-opening-portrait img {
+  -webkit-mask-image: url("../img/pj-ray-portrait-mask.svg");
+  mask-image: url("../img/pj-ray-portrait-mask.svg");
+  mask-mode: alpha;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: var(--portrait-focus);
+  mask-position: var(--portrait-focus);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 .hero-portrait figcaption {
   position: absolute;
@@ -652,15 +664,16 @@ figure {
 .author-opening-portrait img {
   position: absolute;
   inset: 0;
-  object-fit: cover;
-  object-position: 50% 32%;
+  object-fit: contain;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  --portrait-focus: 50% 100%;
+  object-position: var(--portrait-focus);
 }
 .author-opening-portrait picture {
   display: block;
   position: absolute;
   inset: 0;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 48px);
-  mask-image: linear-gradient(to right, transparent, #000 48px);
 }
 .author-opening-portrait figcaption {
   position: absolute;
@@ -1982,11 +1995,6 @@ dd {
   }
 }
 @media (max-width: 760px) {
-  .hero-portrait picture,
-  .author-opening-portrait picture {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 40px);
-    mask-image: linear-gradient(to bottom, transparent, #000 40px);
-  }
   .story-finale {
     padding-block: 64px;
   }
@@ -2074,7 +2082,8 @@ dd {
     height: 480px;
   }
   .hero-portrait img {
-    object-position: 50% 30%;
+    --portrait-focus: 50% 30%;
+    object-position: var(--portrait-focus);
   }
   .hero-portrait figcaption {
     padding: 24px var(--gutter);
@@ -2191,7 +2200,8 @@ dd {
     height: 480px;
   }
   .author-opening-portrait img {
-    object-position: 50% 32%;
+    --portrait-focus: 50% 32%;
+    object-position: var(--portrait-focus);
   }
   .author-opening-portrait figcaption {
     font-size: 0.75rem;
