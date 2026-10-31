@@ -17,10 +17,10 @@ for name, (url, directory) in fonts.items():
     license_path = FONTS / f'{name}-OFL.txt'
     license_path.write_text('\n'.join(line.rstrip() for line in license_path.read_text(encoding='utf-8').splitlines()) + '\n', encoding='utf-8')
 
-portrait = Image.open(IMAGES / 'author-portrait.jpg')
+portrait = Image.open(IMAGES / 'pj-ray-portrait.jpg')
 for width in (540, 900, 1080):
     resized = portrait.resize((width, round(portrait.height * width / portrait.width)), Image.Resampling.LANCZOS)
-    resized.save(IMAGES / f'author-portrait-{width}.webp', quality=82, method=6)
+    resized.save(IMAGES / f'pj-ray-portrait-{width}.webp', quality=82, method=6)
 
 cover = Image.open(IMAGES / '81pFcztlgCL._SY425_.jpg').convert('RGB')
 
