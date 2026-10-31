@@ -814,6 +814,25 @@ figure {
   width: 252px;
   box-shadow: 16px 24px 32px #20211f30;
 }
+.book-stage.book-stage--studio {
+  min-height: 0;
+  padding: 16px 0;
+}
+.book-studio {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+}
+.book-studio picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.book-studio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .art-note {
   font-size: 0.75rem;
   line-height: 1rem;
