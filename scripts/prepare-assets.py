@@ -22,7 +22,10 @@ for width in (540, 900, 1080):
     resized = portrait.resize((width, round(portrait.height * width / portrait.width)), Image.Resampling.LANCZOS)
     resized.save(IMAGES / f'pj-ray-portrait-{width}.webp', quality=82, method=6)
 
-cover = Image.open(IMAGES / '81pFcztlgCL._SY425_.jpg').convert('RGB')
+cover = Image.open(IMAGES / 'living-with-bipolar-cover.jpg').convert('RGB')
+for width in (320, 600):
+    resized = cover.resize((width, round(cover.height * width / cover.width)), Image.Resampling.LANCZOS)
+    resized.save(IMAGES / f'living-with-bipolar-cover-{width}.webp', quality=84, method=6)
 
 social = Image.new('RGB', (1200, 630), '#f6f4ef')
 draw = ImageDraw.Draw(social)
@@ -33,7 +36,7 @@ draw.text((58, 154), 'Living', font=ImageFont.truetype(serif, 100), fill='#20211
 draw.text((58, 270), 'with Bipolar.', font=ImageFont.truetype(serif, 100), fill='#253eb9')
 draw.text((64, 502), 'A life before diagnosis. A way forward after it.', font=ImageFont.truetype(sans, 22), fill='#62635f')
 draw.rectangle((792, 0, 1200, 630), fill='#181818')
-small = cover.resize((267, 425), Image.Resampling.LANCZOS)
-social.paste(small, (862, 102))
-social.save(IMAGES / 'social.jpg', quality=90, optimize=True)
+small = cover.resize((267, round(cover.height * 267 / cover.width)), Image.Resampling.LANCZOS)
+social.paste(small, (862, (630 - small.height) // 2))
+social.save(IMAGES / 'living-with-bipolar-social.jpg', quality=90, optimize=True)
 print('Prepared local fonts, responsive portraits and 1200 × 630 sharing image.')
